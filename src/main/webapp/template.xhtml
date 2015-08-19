@@ -1,201 +1,214 @@
 <?xml version='1.0' encoding='UTF-8' ?>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
-<html xmlns="http://www.w3.org/1999/xhtml"
+<html lang="#{localeChanger.language}"
+      xmlns="http://www.w3.org/1999/xhtml"
       xmlns:h="http://java.sun.com/jsf/html"
       xmlns:ui="http://java.sun.com/jsf/facelets"
-      xmlns:p="http://primefaces.org/ui">
-    <h:head>
-        <meta name="description" content="" />
-        <meta name="keywords" content="" />
-        <meta http-equiv="content-type" content="text/html; charset=utf-8" />
-        <link rel="stylesheet" type="text/css" href="resources/css/style.css" />
-        <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
-        <script type="text/javascript" src="resources/script/jquery.dropotron-1.0.js"></script>
-        <script type="text/javascript" src="resources/script/jquery.slidertron-1.1.js"></script>
-        <script type="text/javascript">
-            $(function () {
-                $('#menu > ul').dropotron({
-                    mode: 'fade',
-                    globalOffsetY: 11,
-                    offsetY: -15
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+    <f:view locale="#{localeChanger.locale}">
+        <h:head>
+            <meta name="description" content="" />
+            <meta name="keywords" content="" />
+            <meta http-equiv="content-type" content="text/html; charset=utf-8" />
+            <link rel="stylesheet" type="text/css" href="resources/css/style.css" />
+            <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
+            <script type="text/javascript" src="resources/script/jquery.dropotron-1.0.js"></script>
+            <script type="text/javascript" src="resources/script/jquery.slidertron-1.1.js"></script>
+            <script type="text/javascript">
+                $(function () {
+                    $('#menu > ul').dropotron({
+                        mode: 'fade',
+                        globalOffsetY: 11,
+                        offsetY: -15
+                    });
                 });
-            });
-        </script>
+            </script>
 
-        <title><ui:insert name="pagetitle">templ</ui:insert></title>
+            <title><ui:insert name="pagetitle">templ</ui:insert></title>
 
-    </h:head>
-    <h:body>
-        <div id="wrapper">
-            <div id="header">
-                <div id="logo">
-                    <p:graphicImage name="images/etf-beograd1.jpg" />
+        </h:head>
+        <h:body>
+            <div id="wrapper">
+                <div id="header">
+                    <div id="logo">
+                        <p:graphicImage name="images/etf-beograd1.jpg" />
+                    </div>
+                    <div id="slogan">
+                        <h2>
+                            <p>#{msgs.nazivKatedre}</p>
+                        </h2>
+                    </div>
                 </div>
-                <div id="slogan">
-                    <h2>
-                        <p>Katedra za energetske pretvarače i pogone</p>
-                    </h2>
-                </div>
-            </div>
-            <div id="menu">
-                <ul>
-                    <li class="first"><a href="#">Početna</a></li>
-                    <li><a href="#">Nastavnici</a></li>
-                    <li><a href="#">Obaveštenja</a></li>
-                    <li>
-                        <span class="opener">Studije<b></b></span>
-                        <ul>
-                            <li>
-                                <span>Osnovne studije<b></b></span>
-                                <ul>
-                                    <li><a href="#">Odsek za energetiku</a></li>
-                                    <li><a href="#">Predmeti na drugim odsecima</a></li>
-                                </ul>
-                            </li>
-                            <li><a href="#">Master studije</a></li>
-                            <li><a href="#">Doktorske studije</a></li>
+                <div id="menu">
+                    <ul>
+                        <li class="first"><a href="#">#{msgs.meni1}</a></li>
+                        <li><a href="#">#{msgs.meni2}</a></li>
+                        <li><a href="obavestenja.xhtml">#{msgs.meni3}</a></li>
+                        <li>
+                            <span class="opener">#{msgs.meni4}<b></b></span>
+                            <ul>
+                                <li>
+                                    <span>#{msgs.meni41}<b></b></span>
+                                    <ul>
+                                        <li><a href="#">#{msgs.meni411}</a></li>
+                                        <li><a href="#">#{msgs.meni412}</a></li>
+                                    </ul>
+                                </li>
+                                <li><a href="#">#{msgs.meni42}</a></li>
+                                <li><a href="#">#{msgs.meni43}</a></li>
 
-                        </ul>
-                    </li>
-                    <li><a href="#">Diplomski i master radovi</a></li>
-                    <li><a href="#">Projekti i publikacije</a></li>
-                    <li><a href="#">Servisi</a></li>
-                    <li class="last"><a href="#">Kontakt</a></li>
-                </ul>
-                <br class="clearfix" />
-            </div>
-            <div id="slider">
-                <ui:insert name="sredina_slike">
-                    <!--                        <div class="viewer">
-                                                <div class="reel">
-                    
-                                                    <div class="slide">
-                                                        <img src="images/slide01.jpg" alt="" />
-                                                    </div>
-                                                    <div class="slide">
-                                                        <img src="images/slide02.jpg" alt="" />
-                                                    </div>
-                                                    <div class="slide">
-                                                        <img src="images/slide03.jpg" alt="" />
-                                                    </div>
-                                                    <div class="slide">
-                                                        <img src="images/slide04.jpg" alt="" />
-                                                    </div>
-                                                    <div class="slide">
-                                                        <img src="images/slide05.jpg" alt="" />
-                                                    </div>
-                    
-                                                </div>
-                                            </div>
-                                            <div class="indicator">
-                                                <span>1</span>
-                                                <span>2</span>
-                                                <span>3</span>
-                                                <span>4</span>
-                                                <span>5</span>
-                                            </div>-->
-                </ui:insert>
-            </div>
-            <div id="page">
-                <div id="content">
-                    <ui:insert name="sredina_sadrzaj">
-                        <!--                        <div class="box">
-                                                    <p:commandButton value="bla"></p:commandButton>
-                                                    <h2>Welcome to Big Business 2.0</h2>
-                                                    <p>
-                                                        This is <strong>Big Business 2.0</strong>, a free and fully standards-compliant CSS website
+                            </ul>
+                        </li>
+                        <li><a href="#">#{msgs.meni5}</a></li>
+                        <li><a href="#">#{msgs.meni6}</a></li>
+                        <li><a href="#">#{msgs.meni7}</a></li>
+                        <li class="last"><a href="#">#{msgs.meni8}</a></li>
+                    </ul>
+                    <br class="clearfix" />
+                </div>
+                <div style="float: right; margin-right: 5px">
+                    <h:form>
+                        <h:form>
+                            <h:selectOneMenu value="#{localeChanger.language}" onchange="submit()">
+                                <f:selectItem itemValue="latin" itemLabel="Latinica" />
+                                <f:selectItem itemValue="cyrillic" itemLabel="Cirilica" />
+                                <f:selectItem itemValue="en" itemLabel="English" />
+                            </h:selectOneMenu>
+                        </h:form>
+                    </h:form>
+                </div>
+                <div id="slider">
+                    <ui:insert name="sredina_slike">
+
+                        <!--                        <div class="viewer">
+                                                    <div class="reel">
                         
-                                                        template by <a href="http://templated.co" rel="nofollow">TEMPLATED</a>. The pictures in this template are from <a href="http://fotogrph.com/">Fotogrph</a>. This free CSS template is released under the <a href="http://templated.co/license">Creative Commons Attribution</a> license, so you're pretty much free to do whatever you want with it (even use it commercially) provided you credit us in some way. Have fun :)
-                                                    </p>
-                                                </div>
-                                                <div class="box" id="content-box1">
-                                                    <h3>Mauris justo</h3>
-                                                    <ul class="section-list">
-                                                        <li class="first">
-                                                            <img class="pic alignleft" src="images/pic01.jpg" width="70" height="70" alt="" />
-                                                            <span>Condimentum et porttitor tristique nec aliquet magnis pretium quam nibh.</span>
-                                                        </li>
-                                                        <li>
-                                                            <img class="pic alignleft" src="images/pic02.jpg" width="70" height="70" alt="" />
-                                                            <span>Posuere elementum sapien justo tortor nulla fringilla suspendisse nascetur.</span>
-                                                        </li>
-                                                        <li class="last">
-                                                            <img class="pic alignleft" src="images/pic03.jpg" width="70" height="70" alt="" />
-                                                            <span>Ipsum quis vestibulum feugiat congue nunc laoreet volutpat lorem ipsum sociis.</span>
-                                                        </li>
-                                                    </ul>
-                                                </div>
-                                                <div class="box" id="content-box2">
-                                                    <h3>Magnis hendrerit erat</h3>
-                                                    <p>
-                                                        Neque neque ornare penatibus tristique fusce turpis. Purus sagittis euismod at ornare suscipit tempus.
-                                                    </p>
-                                                    <ul class="list">
-                                                        <li class="first"><a href="#">Ipsum phasellus ullamcorper</a></li>
-                                                        <li><a href="#">Mollis mattis tempus amet</a></li>
-                                                        <li><a href="#">Ipsum aliquet dignissim vitae</a></li>
-                                                        <li><a href="#">Orci metus curae sed mollis</a></li>
-                                                        <li class="last"><a href="#">Tristique amet venenatis</a></li>
-                                                    </ul>
-                                                </div>
-                                                <br class="clearfix" />-->
-                    </ui:insert>
-                </div>
-                <div id="sidebar">
-                    <ui:insert name="sredina_sidebar">
-                        <!--                        <div class="box">
-                                                    <h3>Cursus magnis</h3>
-                                                    <ul class="list">
-                                                        <li class="first"><a href="#">Adipiscing tincidunt</a></li>
-                                                        <li><a href="#">Euismod elit sollicitudin</a></li>
-                                                        <li><a href="#">Dolor magnis et lacinia</a></li>
-                                                        <li><a href="#">Mauris ornare aenean</a></li>
-                                                        <li class="last"><a href="#">Ante semper fringilla</a></li>
-                                                    </ul>
-                                                </div>
-                                                <div class="box">
-                                                    <h3>Morbi at varius</h3>
-                                                    <div class="date-list">
-                                                        <ul class="list date-list">
-                                                            <li class="first"><span class="date">2/08</span> <a href="#">Quam sed tempus</a></li>
-                                                            <li><span class="date">2/05</span> <a href="#">Lorem et vestibulum</a></li>
-                                                            <li><span class="date">2/01</span> <a href="#">Risus aenean tellus</a></li>
-                                                            <li class="last"><span class="date">1/31</span> <a href="#">Tristique et primis</a></li>
-                                                        </ul>
+                                                        <div class="slide">
+                                                            <img src="images/slide01.jpg" alt="" />
+                                                        </div>
+                                                        <div class="slide">
+                                                            <img src="images/slide02.jpg" alt="" />
+                                                        </div>
+                                                        <div class="slide">
+                                                            <img src="images/slide03.jpg" alt="" />
+                                                        </div>
+                                                        <div class="slide">
+                                                            <img src="images/slide04.jpg" alt="" />
+                                                        </div>
+                                                        <div class="slide">
+                                                            <img src="images/slide05.jpg" alt="" />
+                                                        </div>
+                        
                                                     </div>
+                                                </div>
+                                                <div class="indicator">
+                                                    <span>1</span>
+                                                    <span>2</span>
+                                                    <span>3</span>
+                                                    <span>4</span>
+                                                    <span>5</span>
                                                 </div>-->
                     </ui:insert>
                 </div>
-                <br class="clearfix" />
-            </div>
-
-            <div id="page-bottom">
-                <div id="page-bottom-content">
-                    <ui:insert name="dole">
-                        <!--                        <h3>Magnis hendrerit erat</h3>
-                                                <p>
-                                                    Euismod sodales sociis hendrerit pulvinar acursus urna. Consectetur egestas sodales at ornare laoreet turpis. Lorem id sapien ridiculus sagittis imperdiet urna suspendisse. Posuere arcu parturient quam risus. Aliquam nullam magnis integer gravida vulputate felis. Consectetur montes sollicitudin dictum. Auctor sociis hendrerit pulvinar acursus urna lorem ipsum dolor vivamus pulvinar libero. Massa egestas cubilia lacus augue mattis consectetur.
-                                                </p>-->
-                    </ui:insert>
+                <div id="page">
+                    <div id="content">
+                        <ui:insert name="sredina_sadrzaj">
+                            <!--                        <div class="box">
+                                                        <p:commandButton value="bla"></p:commandButton>
+                                                        <h2>Welcome to Big Business 2.0</h2>
+                                                        <p>
+                                                            This is <strong>Big Business 2.0</strong>, a free and fully standards-compliant CSS website
+                            
+                                                            template by <a href="http://templated.co" rel="nofollow">TEMPLATED</a>. The pictures in this template are from <a href="http://fotogrph.com/">Fotogrph</a>. This free CSS template is released under the <a href="http://templated.co/license">Creative Commons Attribution</a> license, so you're pretty much free to do whatever you want with it (even use it commercially) provided you credit us in some way. Have fun :)
+                                                        </p>
+                                                    </div>
+                                                    <div class="box" id="content-box1">
+                                                        <h3>Mauris justo</h3>
+                                                        <ul class="section-list">
+                                                            <li class="first">
+                                                                <img class="pic alignleft" src="images/pic01.jpg" width="70" height="70" alt="" />
+                                                                <span>Condimentum et porttitor tristique nec aliquet magnis pretium quam nibh.</span>
+                                                            </li>
+                                                            <li>
+                                                                <img class="pic alignleft" src="images/pic02.jpg" width="70" height="70" alt="" />
+                                                                <span>Posuere elementum sapien justo tortor nulla fringilla suspendisse nascetur.</span>
+                                                            </li>
+                                                            <li class="last">
+                                                                <img class="pic alignleft" src="images/pic03.jpg" width="70" height="70" alt="" />
+                                                                <span>Ipsum quis vestibulum feugiat congue nunc laoreet volutpat lorem ipsum sociis.</span>
+                                                            </li>
+                                                        </ul>
+                                                    </div>
+                                                    <div class="box" id="content-box2">
+                                                        <h3>Magnis hendrerit erat</h3>
+                                                        <p>
+                                                            Neque neque ornare penatibus tristique fusce turpis. Purus sagittis euismod at ornare suscipit tempus.
+                                                        </p>
+                                                        <ul class="list">
+                                                            <li class="first"><a href="#">Ipsum phasellus ullamcorper</a></li>
+                                                            <li><a href="#">Mollis mattis tempus amet</a></li>
+                                                            <li><a href="#">Ipsum aliquet dignissim vitae</a></li>
+                                                            <li><a href="#">Orci metus curae sed mollis</a></li>
+                                                            <li class="last"><a href="#">Tristique amet venenatis</a></li>
+                                                        </ul>
+                                                    </div>
+                                                    <br class="clearfix" />-->
+                        </ui:insert>
+                    </div>
+                    <div id="sidebar">
+                        <ui:insert name="sredina_sidebar">
+                            <div class="box" >
+                                <h:panelGroup rendered="#{(login.korisnik.tip eq 1) or (login.korisnik.tip eq 3) or (login.korisnik.tip eq 4)}">
+                                    <h:form>
+                                        <p:commandLink action="dodavanjeObavestenja.xhtml" value="Dodaj obaveštenje" />
+                                    </h:form>
+                                </h:panelGroup>
+                            </div>
+                            <div class="box">
+                                <h3>Morbi at varius</h3>
+                                <div class="date-list">
+                                    <ul class="list date-list">
+                                        <li class="first"><span class="date">2/08</span> <a href="#">Quam sed tempus</a></li>
+                                        <li><span class="date">2/05</span> <a href="#">Lorem et vestibulum</a></li>
+                                        <li><span class="date">2/01</span> <a href="#">Risus aenean tellus</a></li>
+                                        <li class="last"><span class="date">1/31</span> <a href="#">Tristique et primis</a></li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </ui:insert>
+                    </div>
+                    <br class="clearfix" />
                 </div>
-                <div id="page-bottom-sidebar">
-                    <h3>Logovanje</h3>
-                    <h:form style="background-color: #6E6E6E">  
-                        <h:panelGroup rendered="#{not login.korisnik.ulogovan}">
-                            <h:outputLabel for="username" value="Korisničko ime:" style="font-size: 11.5pt; font-family: Georgia, serif; color: #DCDCDC;" />
-                            <p:inputText id="username" value="#{login.korisnik.korisnicko_ime}" /><br />
-                            <h:outputLabel for="password" value="Šifra:" style="font-size: 11.5pt; font-family: Georgia, serif; color: #DCDCDC;" /> <br /> 
-                            <p:password id="password" value="#{login.korisnik.sifra}" required="true"  requiredMessage="Šifra je potrebna" /><br />
-                            <p:commandButton value="Uloguj se" action="#{login.uloguj()}" icon="ui-icon-unlocked" styleClass="loginButton" style="margin-top: 5px; font-size: 11.5pt; font-family: Georgia, serif;" />
-                        </h:panelGroup>
-                    </h:form>
 
+                <div id="page-bottom">
+                    <div id="page-bottom-content">
+                        <ui:insert name="dole">
+                            <!--                        <h3>Magnis hendrerit erat</h3>
+                                                    <p>
+                                                        Euismod sodales sociis hendrerit pulvinar acursus urna. Consectetur egestas sodales at ornare laoreet turpis. Lorem id sapien ridiculus sagittis imperdiet urna suspendisse. Posuere arcu parturient quam risus. Aliquam nullam magnis integer gravida vulputate felis. Consectetur montes sollicitudin dictum. Auctor sociis hendrerit pulvinar acursus urna lorem ipsum dolor vivamus pulvinar libero. Massa egestas cubilia lacus augue mattis consectetur.
+                                                    </p>-->
+                        </ui:insert>
+                    </div>
+                    <div id="page-bottom-sidebar">
+                        <h3>#{msgs.logovanje}</h3>
+                        <h:form style="background-color: #6E6E6E">  
+                            <h:panelGroup rendered="#{not login.korisnik.ulogovan}">
+                                <h:outputLabel for="username" value="#{msgs.korisnickoIme}" style="font-size: 11.5pt; font-family: Georgia, serif; color: #DCDCDC;" />
+                                <p:inputText id="username" value="#{login.korisnik.korisnicko_ime}" /><br />
+                                <h:outputLabel for="password" value="#{msgs.sifra}" style="font-size: 11.5pt; font-family: Georgia, serif; color: #DCDCDC;" /> <br /> 
+                                <p:password id="password" value="#{login.korisnik.sifra}" required="true"  requiredMessage="Šifra je potrebna" /><br />
+                                <p:commandButton value="#{msgs.dugme}" action="#{login.uloguj()}" icon="ui-icon-unlocked" styleClass="loginButton" style="margin-top: 5px; font-size: 11.5pt; font-family: Georgia, serif;" />
+                            </h:panelGroup>
+                        </h:form>
+
+                    </div>
+                    <br class="clearfix" />
                 </div>
-                <br class="clearfix" />
             </div>
-        </div>
-        <div id="footer">
-            &copy; 2015 Катедра за енергетске претвараче и погоне Електротехничког факултета Универзитета у Београду 
-        </div>
-    </h:body>
+            <div id="footer">
+                &copy; 2015 Катедра за енергетске претвараче и погоне Електротехничког факултета Универзитета у Београду 
+            </div>
+        </h:body>
+    </f:view>
 </html>

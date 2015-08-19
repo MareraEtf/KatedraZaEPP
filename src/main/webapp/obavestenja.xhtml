@@ -1,0 +1,64 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:c="http://java.sun.com/jsp/jstl/core">
+    <h:head>
+        <meta name="description" content="" />
+        <meta name="keywords" content="" />
+        <meta http-equiv="content-type" content="text/html; charset=utf-8" />
+        <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
+        <script type="text/javascript" src="resources/script/jquery.dropotron-1.0.js"></script>
+        <script type="text/javascript" src="resources/script/jquery.slidertron-1.1.js"></script>
+        <script type="text/javascript">
+            $(function () {
+                $('#menu > ul').dropotron({
+                    mode: 'fade',
+                    globalOffsetY: 11,
+                    offsetY: -15
+                });
+                $('#slider').slidertron({
+                    viewerSelector: '.viewer',
+                    indicatorSelector: '.indicator span',
+                    reelSelector: '.reel',
+                    slidesSelector: '.slide',
+                    speed: 'slow',
+                    advanceDelay: 4000
+                });
+            });
+        </script>
+    </h:head>
+    <h:body>
+        <ui:composition template="template.xhtml">
+            <ui:define name="pagetitle">Obaveštenja</ui:define>
+            <ui:define name="sredina_sadrzaj">
+                #{controller.dohvSvaObavestenja()}
+
+                <h:form id="form">
+                    <h2 >Obaveštenja</h2>
+                    <ui:repeat value="#{controller.obavestenja}" var="o">
+                        <div class="box">
+                            <h3>#{o.naziv}(#{o.tip})</h3>
+                            <p>#{o.tekst}</p>
+                        </div>
+                    </ui:repeat>
+                </h:form>
+
+                <br class="clearfix" />
+            </ui:define>
+            <ui:define name="sredina_sidebar">
+            </ui:define>
+
+            <ui:define name="dole">
+                <h3>Magnis hendrerit erat</h3>
+                <p>
+                    Euismod sodales sociis hendrerit pulvinar acursus urna. Consectetur egestas sodales at ornare laoreet turpis. Lorem id sapien ridiculus sagittis imperdiet urna suspendisse. Posuere arcu parturient quam risus. Aliquam nullam magnis integer gravida vulputate felis. Consectetur montes sollicitudin dictum. Auctor sociis hendrerit pulvinar acursus urna lorem ipsum dolor vivamus pulvinar libero. Massa egestas cubilia lacus augue mattis consectetur.
+                </p>
+            </ui:define>
+
+        </ui:composition>
+    </h:body>
+</html>
+

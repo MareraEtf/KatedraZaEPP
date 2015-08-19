@@ -8,5 +8,6 @@
     <property name="hibernate.connection.username">root</property>
     <property name="hibernate.connection.pool_size">100</property>
     <mapping class="db.Korisnik"/>
+    <mapping class="db.Obavestenje"/>
   </session-factory>
 </hibernate-configuration>

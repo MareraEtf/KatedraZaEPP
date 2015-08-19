@@ -28,11 +28,10 @@
                 });
             });
         </script>
-        <title><ui:define name="pagetitle">Početna</ui:define></title>
     </h:head>
     <h:body>
         <ui:composition template="template.xhtml">
-
+            <ui:define name="pagetitle">Početna</ui:define>
             <ui:define name="sredina_sadrzaj">
                 <div class="box">
                     <h2>ULOGOVAN</h2>
@@ -74,16 +73,7 @@
                 </div>
                 <br class="clearfix" />
             </ui:define>
-            <ui:define name="sredina_sidebar">
-                <div class="box">
-                    <ul class="list">
-                        <li class="first">
-                            <h4>Ulogovani ste kao : </h4><br/>
-                            #{login.korisnik.korisnicko_ime}(<a href="#">Izloguj se</a>)
-                        </li>
-                    </ul>
-                </div>
-            </ui:define>
+            
 
             <ui:define name="dole">
                 <h3>Magnis hendrerit erat</h3>

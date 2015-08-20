@@ -1,0 +1,84 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+    <h:head>
+        <meta name="description" content="" />
+        <meta name="keywords" content="" />
+        <meta http-equiv="content-type" content="text/html; charset=utf-8" />
+        <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
+    </h:head>
+    <h:body>
+        <ui:composition template="template.xhtml">
+            <ui:define name="pagetitle">Nastavnici</ui:define>
+            <ui:define name="breadcrumps"><a href="#">Početna</a>&nbsp;>&nbsp;<a href="#">Nastavnici</a></ui:define>
+            <ui:define name="sredina_sadrzaj">
+
+                <h2>Nastavno osoblje</h2>
+                <br/><br/>
+                <div class="box">
+                    <h:form>
+                        <h4>Redovni profesori</h4>
+                        <p:separator />
+                        <h:commandLink action="#{nastavniciControler.detalji('Zoran_Lazarevic')}" value="Prof. dr Zoran Lazarević" /><br/>
+                        <a href="#{nastavniciControler.detalji(Zoran_Radakovic)}">Prof. dr Zoran Radaković</a><br/>
+                        <a href="#{nastavniciControler.detalji(Miomir_Kostic)}">Prof. dr Miomir Kostić</a><br/>
+                        <a href="#{nastavniciControler.detalji(Slobodan_Vukosavic)}">Prof. dr Slobodan Vukosavić</a><br/><br/>
+
+                        <h4>Docenti</h4>
+                        <p:separator />
+                        <a href="#">doc. dr Leposava Ristić</a><br/>
+                        <a href="#">doc. dr Milan Bebić</a><br/>
+                        <a href="#">doc. dr Miloš Nedeljković</a><br/>
+                        <a href="#">doc. dr Srđan Srdić</a><br/><br/>
+
+                        <h4>Asistenti</h4>
+                        <p:separator />
+                        <a href="#">as. mr Jovan Trifunović</a><br/>
+                        <a href="#">as. mr Jovan Trifunović</a><br/>
+                        <a href="#">as. Bogdan Brković dipl. inž. el.</a><br/>
+                        <a href="#">as. Dragan Mihić dipl. inž. el.</a><br/>
+                        <a href="#">as. Miloš Ječmenica dipl. inž. el.</a><br/>
+                        <a href="#">as. Mladen Terzić dipl. inž. el.</a><br/>
+                        <a href="#">as. Nikola Popov dipl. inž. el.</a><br/><br/>
+
+                        <h4>Istraživač saradnik</h4>
+                        <p:separator />
+                        <a href="#">Ilija Mihailović dipl. inž. el.</a><br/>
+                        <a href="#">Marko Davidović</a><br/>
+                        <a href="#">Nemanja Kostić</a><br/>
+                        <a href="#">Nikola Đorđević dipl. inž. el.</a><br/><br/>
+
+                        <h4>Istraživač pripravnik</h4>
+                        <p:separator />
+                        <a href="#">Uroš Radoman</a><br/><br/>
+
+                        <h4>Ostali</h4>
+                        <p:separator />
+                        <a href="#">mr Dragan Jevtić </a>&nbsp;(Viši laboratorijski inženjer, VII/2)<br/>
+                        <a href="#">Žarko Ševaljević </a>&nbsp;(Laboratorijski tehničar)<br/>
+                        <a href="#">Neša Rašić dipl. inž. el. </a>&nbsp;(Saradnik na projektu)<br/>
+                        <a href="#">mr Nedžad Hadžiefendić </a>&nbsp;(Viši laboratorijski inženjer, VII/2)<br/>
+                        <a href="#">Nikola Lepojević </a>&nbsp;(Laboratorijski inženjer, VII/1)<br/>
+                    </h:form>
+                </div>
+
+                <br class="clearfix" />
+            </ui:define>
+            <ui:define name="sredina_sidebar">
+            </ui:define>
+
+            <ui:define name="dole">
+                <h3>Magnis hendrerit erat</h3>
+                <p>
+                    Euismod sodales sociis hendrerit pulvinar acursus urna. Consectetur egestas sodales at ornare laoreet turpis. Lorem id sapien ridiculus sagittis imperdiet urna suspendisse. Posuere arcu parturient quam risus. Aliquam nullam magnis integer gravida vulputate felis. Consectetur montes sollicitudin dictum. Auctor sociis hendrerit pulvinar acursus urna lorem ipsum dolor vivamus pulvinar libero. Massa egestas cubilia lacus augue mattis consectetur.
+                </p>
+            </ui:define>
+
+        </ui:composition>
+    </h:body>
+</html>
+

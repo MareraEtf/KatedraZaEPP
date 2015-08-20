@@ -1,0 +1,45 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:p="http://primefaces.org/ui">
+    <f:view locale="#{localeChanger.locale}">
+        <h:head>
+            <link rel="stylesheet" type="text/css" href="resources/css/style.css" />
+            <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
+        </h:head>
+        <h:body>
+            <div id="page-bottom">
+                <div id="page-bottom-content">
+                    <ui:insert name="dole">
+                        <!--                        <h3>Magnis hendrerit erat</h3>
+                                                <p>
+                                                    Euismod sodales sociis hendrerit pulvinar acursus urna. Consectetur egestas sodales at ornare laoreet turpis. Lorem id sapien ridiculus sagittis imperdiet urna suspendisse. Posuere arcu parturient quam risus. Aliquam nullam magnis integer gravida vulputate felis. Consectetur montes sollicitudin dictum. Auctor sociis hendrerit pulvinar acursus urna lorem ipsum dolor vivamus pulvinar libero. Massa egestas cubilia lacus augue mattis consectetur.
+                                                </p>-->
+                    </ui:insert>
+                </div>
+                <div id="page-bottom-sidebar">
+                    <h3>#{msgs.logovanje}</h3>
+                    <h:form style="background-color: #6E6E6E">  
+                        <h:panelGroup rendered="#{not login.korisnik.ulogovan}">
+                            <h:outputLabel for="username" value="#{msgs.korisnickoIme}" style="font-size: 11.5pt; font-family: Georgia, serif; color: #DCDCDC;" />
+                            <p:inputText id="username" value="#{login.korisnik.korisnicko_ime}" /><br />
+                            <h:outputLabel for="password" value="#{msgs.sifra}" style="font-size: 11.5pt; font-family: Georgia, serif; color: #DCDCDC;" /> <br /> 
+                            <p:password id="password" value="#{login.korisnik.sifra}" required="true"  requiredMessage="Šifra je potrebna" /><br />
+                            <p:commandButton value="#{msgs.dugme}" action="#{login.uloguj()}" icon="ui-icon-unlocked" styleClass="loginButton" style="margin-top: 5px; font-size: 11.5pt; font-family: Georgia, serif;" />
+                        </h:panelGroup>
+                    </h:form>
+
+                </div>
+                <br class="clearfix" />
+            </div>
+            </div>
+            <div id="footer">
+                &copy; 2015 Катедра за енергетске претвараче и погоне Електротехничког факултета Универзитета у Београду 
+            </div>
+        </h:body>
+    </f:view>
+</html>
+

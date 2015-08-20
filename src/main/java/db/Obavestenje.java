@@ -54,8 +54,16 @@ public class Obavestenje implements Serializable {
         this.tip = tip;
     }
 
-    public Calendar getDatum() {
-        return datum;
+    public String getDatum() {
+
+        String s = "";
+        int dan = datum.get(Calendar.DAY_OF_MONTH);
+        int mes = datum.get(Calendar.MONTH) + 1;
+        int god = datum.get(Calendar.YEAR);
+
+        s = dan + "/" + mes + "/" + god;
+
+        return s;
     }
 
     public void setDatum(Calendar datum) {

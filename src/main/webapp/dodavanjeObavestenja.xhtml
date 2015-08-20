@@ -3,7 +3,8 @@
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:h="http://xmlns.jcp.org/jsf/html"
       xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
-      xmlns:p="http://primefaces.org/ui">
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
     <h:head>
         <meta name="description" content="" />
         <meta name="keywords" content="" />
@@ -32,6 +33,7 @@
     <h:body>
         <ui:composition template="template.xhtml">
             <ui:define name="pagetitle">Dodavanje obavestenja</ui:define>
+            <ui:define name="breadcrumps"><a href="#">Početna</a>&nbsp;>&nbsp;<a href="#">Dodavanje obaveštenja</a></ui:define>
             <ui:define name="sredina_sadrzaj">
                 <div class="box">
                     <h2>Dodavanje obaveštenja</h2>
@@ -39,6 +41,13 @@
                         <p:panelGrid columns="2">
                             <h:outputLabel for="naziv" value="Naziv" />
                             <p:inputText id="naziv" value="#{administrator.obavestenje.naziv}" />
+                            <h:outputLabel for="tip" value="Kategorija" />
+                            <h:selectOneMenu id="tip" value="#{administrator.obavestenje.tip}" style="width:125px">
+                                <f:selectItem itemLabel="Izaberite" itemValue="" />
+                                <f:selectItem itemLabel="Posao" itemValue="posao" />
+                                <f:selectItem itemLabel="Praksa" itemValue="praksa" />
+                                <f:selectItem itemLabel="Takmičenje" itemValue="takmicenje" />
+                            </h:selectOneMenu>
                             <h:outputLabel for="tekst" value="Tekst" />
                             <p:inputTextarea id="tekst" value="#{administrator.obavestenje.tekst}"  />
                             <h:commandButton value="Potvrdi" action="#{administrator.dodajObavestenje()}" />

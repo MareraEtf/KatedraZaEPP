@@ -1,0 +1,95 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:c="http://java.sun.com/jsp/jstl/core">
+    <h:head>
+        <meta name="description" content="" />
+        <meta name="keywords" content="" />
+        <meta http-equiv="content-type" content="text/html; charset=utf-8" />
+        <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
+    </h:head>
+    <h:body>
+        <ui:composition template="template.xhtml">
+            <ui:define name="pagetitle">Nastavnik detalji</ui:define>
+            <ui:define name="breadcrumps"><a href="#">Početna</a>&nbsp;>&nbsp;<a href="nastavnici.xhtml">Nastavnici</a>&nbsp;>&nbsp;<a href="#">#{nastavniciControler.nastavnik.zvanje}&nbsp;#{nastavniciControler.nastavnik.ime}&nbsp;#{nastavniciControler.nastavnik.prezime}</a></ui:define>
+            <ui:define name="sredina_sadrzaj">
+
+                <h2>#{nastavniciControler.nastavnik.zvanje}&nbsp;#{nastavniciControler.nastavnik.ime}&nbsp;#{nastavniciControler.nastavnik.prezime}</h2>
+                <br/><br/>
+                <div class="box">
+                    <table>
+                        <tr>
+                            <td><p:graphicImage width="150" height="150" value="upload/slikePredavaca/#{nastavniciControler.nastavnik.slika}" /></td>
+                        </tr>
+                        <tr>
+                            <td>email:</td>
+                            <td>#{nastavniciControler.nastavnik.email}</td>
+                        </tr>
+                        <tr>
+                            <td>Kabinet:</td>
+                            <td>#{nastavniciControler.nastavnik.kabinet}</td>
+                        </tr>
+                        <tr>
+                            <td>Konsultacije:</td>
+                            <td>#{nastavniciControler.nastavnik.konsultacije}</td>
+                        </tr>
+                    </table>
+                </div>
+                <br/><br/>
+                <h:outputText escape="false" value="#{nastavniciControler.nastavnik.tekst}" />
+
+                <br class="clearfix" />
+            </ui:define>
+
+
+
+            <ui:define name="sredina_sidebar">
+                #{nastavniciControler.dohvKurseve()}
+                <h3>Kursevi</h3>
+                <br/>
+
+                <h4>Obavezni</h4>
+                <p:separator />
+
+                <h:panelGroup rendered="#{nastavniciControler.obavezni.size() eq 0}" >
+                    <h:outputText value="Nema kurseva u ovoj kategoriji" />
+                </h:panelGroup>
+
+                <h:panelGroup rendered="#{nastavniciControler.obavezni.size() gt 0}" >
+                    <ui:repeat value="#{nastavniciControler.obavezni}" var="o">
+                        &bull;&nbsp;<a href="#">#{o.nazivKursa}</a><br/>
+                    </ui:repeat>
+                </h:panelGroup>
+
+                <br/><br/>
+
+                <h4>Izborni</h4>
+                <p:separator />
+
+                <h:panelGroup rendered="#{nastavniciControler.izborni.size() eq 0}" >
+                    <h:outputText value="Nema kurseva u ovoj kategoriji" />
+                </h:panelGroup>
+
+                <h:panelGroup rendered="#{nastavniciControler.izborni.size() gt 0}" >
+                    <ui:repeat value="#{nastavniciControler.izborni}" var="i">
+                        &bull;&nbsp;<a href="#">#{i.nazivKursa}</a><br/>
+                    </ui:repeat>
+                </h:panelGroup>
+
+            </ui:define>
+
+            <ui:define name="dole">
+                <h3>Magnis hendrerit erat</h3>
+                <p>
+                    Euismod sodales sociis hendrerit pulvinar acursus urna. Consectetur egestas sodales at ornare laoreet turpis. Lorem id sapien ridiculus sagittis imperdiet urna suspendisse. Posuere arcu parturient quam risus. Aliquam nullam magnis integer gravida vulputate felis. Consectetur montes sollicitudin dictum. Auctor sociis hendrerit pulvinar acursus urna lorem ipsum dolor vivamus pulvinar libero. Massa egestas cubilia lacus augue mattis consectetur.
+                </p>
+            </ui:define>
+
+        </ui:composition>
+    </h:body>
+</html>
+

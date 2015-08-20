@@ -9,5 +9,7 @@
     <property name="hibernate.connection.pool_size">100</property>
     <mapping class="db.Korisnik"/>
     <mapping class="db.Obavestenje"/>
+    <mapping class="db.Kurs"/>
+    <mapping class="db.Predavac_kurs"/>
   </session-factory>
 </hibernate-configuration>

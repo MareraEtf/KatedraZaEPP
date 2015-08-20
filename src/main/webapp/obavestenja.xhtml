@@ -4,7 +4,7 @@
       xmlns:h="http://xmlns.jcp.org/jsf/html"
       xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
       xmlns:p="http://primefaces.org/ui"
-      xmlns:c="http://java.sun.com/jsp/jstl/core">
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
     <h:head>
         <meta name="description" content="" />
         <meta name="keywords" content="" />
@@ -33,14 +33,28 @@
     <h:body>
         <ui:composition template="template.xhtml">
             <ui:define name="pagetitle">Obaveštenja</ui:define>
+            <ui:define name="breadcrumps"><a href="#">Početna</a>&nbsp;>&nbsp;<a href="#">Obaveštenja</a></ui:define>
             <ui:define name="sredina_sadrzaj">
-                #{controller.dohvSvaObavestenja()}
 
+                <h2>Obaveštenja</h2>
+                <br/>
+
+                #{controller.dohvSvaObavestenja()}
                 <h:form id="form">
-                    <h2 >Obaveštenja</h2>
+
+                    <h:outputLabel for="pretraga" value="Izaberite kategoriju: " />
+                    <h:selectOneMenu id="pretraga" value="#{controller.tipObavestenja}" onchange="submit()" valueChangeListener="#{controller.pretraziObavestenja}" style="width:125px">
+                        <f:selectItem itemLabel="Izaberite" itemValue="" />
+                        <f:selectItem itemLabel="Posao" itemValue="posao" />
+                        <f:selectItem itemLabel="Praksa" itemValue="praksa" />
+                        <f:selectItem itemLabel="Takmičenje" itemValue="takmicenje" />
+                    </h:selectOneMenu>
+                    <br /><br />
+                    <p:separator />
+                    <br /><br />
                     <ui:repeat value="#{controller.obavestenja}" var="o">
                         <div class="box">
-                            <h3>#{o.naziv}(#{o.tip})</h3>
+                            <h3>#{o.naziv}&nbsp;(#{o.tip})&nbsp;&nbsp;#{o.datum}</h3>
                             <p>#{o.tekst}</p>
                         </div>
                     </ui:repeat>

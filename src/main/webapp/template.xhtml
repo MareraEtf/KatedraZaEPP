@@ -42,9 +42,9 @@
                 </div>
                 <div id="menu">
                     <ul>
-                        <li class="first"><a href="#">#{msgs.meni1}</a></li>
-                        <li><a href="#">#{msgs.meni2}</a></li>
-                        <li><a href="obavestenja.xhtml">#{msgs.meni3}</a></li>
+                        <li class="first"><a href="index.xhtml">#{msgs.meni1}</a></li>
+                        <li><a href="nastavnici.xhtml">#{msgs.meni2}</a></li>
+                        <li><a href="obavestenja.xhtml?#{localeChanger.locale}">#{msgs.meni3}</a></li>
                         <li>
                             <span class="opener">#{msgs.meni4}<b></b></span>
                             <ul>
@@ -67,17 +67,20 @@
                     </ul>
                     <br class="clearfix" />
                 </div>
+                <div style="float: left; margin-left: 15px;">
+                    <ui:insert name="breadcrumps"></ui:insert>
+                </div>
                 <div style="float: right; margin-right: 5px">
                     <h:form>
-                        <h:form>
-                            <h:selectOneMenu value="#{localeChanger.language}" onchange="submit()">
-                                <f:selectItem itemValue="latin" itemLabel="Latinica" />
-                                <f:selectItem itemValue="cyrillic" itemLabel="Cirilica" />
-                                <f:selectItem itemValue="en" itemLabel="English" />
-                            </h:selectOneMenu>
-                        </h:form>
+                        <h:selectOneMenu value="#{localeChanger.language}" onchange="submit()">
+                            <f:selectItem itemValue="latin" itemLabel="Latinica" />
+                            <f:selectItem itemValue="cyrillic" itemLabel="Cirilica" />
+                            <f:selectItem itemValue="en" itemLabel="English" />
+                        </h:selectOneMenu>
                     </h:form>
                 </div>
+
+
                 <div id="slider">
                     <ui:insert name="sredina_slike">
 
@@ -160,9 +163,11 @@
                         <ui:insert name="sredina_sidebar">
                             <div class="box" >
                                 <h:panelGroup rendered="#{(login.korisnik.tip eq 1) or (login.korisnik.tip eq 3) or (login.korisnik.tip eq 4)}">
-                                    <h:form>
-                                        <p:commandLink action="dodavanjeObavestenja.xhtml" value="Dodaj obaveštenje" />
-                                    </h:form>
+                                    <a href="dodavanjeObavestenja.xhtml">Dodaj obaveštenje</a>
+                                </h:panelGroup>
+                                <br/>
+                                <h:panelGroup rendered="#{login.korisnik.tip eq 1}">
+                                    <a href="promenaPodataka.xhtml" >Promena ličnih podataka</a>
                                 </h:panelGroup>
                             </div>
                             <div class="box">

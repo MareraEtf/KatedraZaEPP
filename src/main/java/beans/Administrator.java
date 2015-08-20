@@ -9,10 +9,12 @@ import db.Obavestenje;
 import db.dbFactory;
 import javax.enterprise.context.SessionScoped;
 import java.io.Serializable;
+import java.util.Calendar;
 import java.util.List;
 import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
 import javax.faces.context.FacesContext;
+import javax.sound.midi.SysexMessage;
 import org.hibernate.Query;
 import org.hibernate.Session;
 
@@ -74,17 +76,22 @@ public class Administrator implements Serializable {
         q.setParameter("naz", obavestenje.getNaziv());
         List results = q.list();
 
+        long vreme = System.currentTimeMillis();
+
+        Calendar datum = Calendar.getInstance();
+        datum.setTimeInMillis(vreme);
+
         if (results.size() > 0) {
             FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_ERROR, "Obaveštenje sa istim nazivom već postoji", ""));
             session.close();
             return null;
         } else {
             session.beginTransaction();
-            obavestenje.setTip("opsti");
+            obavestenje.setDatum(datum);
             session.save(obavestenje);
             session.getTransaction().commit();
             session.close();
-            return "registracijaZavrsena?faces-redirect=true";
+            return "obavestenja.xtml";
         }
     }
 

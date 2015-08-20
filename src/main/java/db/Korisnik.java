@@ -5,6 +5,7 @@
  */
 package db;
 
+import java.io.Serializable;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -18,10 +19,10 @@ import javax.persistence.Table;
  */
 @Entity
 @Table(name = "korisnik")
-public class Korisnik {
+public class Korisnik implements Serializable {
 
-    String ime, prezime, korisnicko_ime, sifra, email;
-    int tip;
+    String ime, prezime, korisnicko_ime, sifra, email, zvanje, konsultacije, slika, tekst;
+    int tip, kabinet;
     boolean ulogovan;
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
@@ -95,4 +96,45 @@ public class Korisnik {
     public void setIDKor(Integer IDKor) {
         this.IDKor = IDKor;
     }
+
+    public String getZvanje() {
+        return zvanje;
+    }
+
+    public void setZvanje(String zvanje) {
+        this.zvanje = zvanje;
+    }
+
+    public String getKonsultacije() {
+        return konsultacije;
+    }
+
+    public void setKonsultacije(String konsultacije) {
+        this.konsultacije = konsultacije;
+    }
+
+    public int getKabinet() {
+        return kabinet;
+    }
+
+    public void setKabinet(int kabinet) {
+        this.kabinet = kabinet;
+    }
+
+    public String getSlika() {
+        return slika;
+    }
+
+    public void setSlika(String slika) {
+        this.slika = slika;
+    }
+
+    public String getTekst() {
+        return tekst;
+    }
+
+    public void setTekst(String tekst) {
+        this.tekst = tekst;
+    }
+
 }

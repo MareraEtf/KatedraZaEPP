@@ -21,7 +21,8 @@ import javax.persistence.Table;
 @Table(name = "kurs")
 public class Kurs implements Serializable {
 
-    String nazivKursa, tip;
+    String nazivKursa, tip, studije, sifra;
+    int godina, semestar;
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
@@ -50,6 +51,38 @@ public class Kurs implements Serializable {
 
     public void setIDKurs(Integer IDKurs) {
         this.IDKurs = IDKurs;
+    }
+
+    public String getStudije() {
+        return studije;
+    }
+
+    public void setStudije(String studije) {
+        this.studije = studije;
+    }
+
+    public int getGodina() {
+        return godina;
+    }
+
+    public void setGodina(int godina) {
+        this.godina = godina;
+    }
+
+    public String getSifra() {
+        return sifra;
+    }
+
+    public void setSifra(String sifra) {
+        this.sifra = sifra;
+    }
+
+    public int getSemestar() {
+        return semestar;
+    }
+
+    public void setSemestar(int semestar) {
+        this.semestar = semestar;
     }
 
 }

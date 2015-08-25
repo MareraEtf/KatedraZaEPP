@@ -1,0 +1,47 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:p="http://primefaces.org/ui">
+    <h:head>
+        <title>Facelet Title</title>
+    </h:head>
+    <h:body>
+        <div style="width: 600px; margin:0 auto;">
+            <h:form id="f2">
+                <p:growl id="growl" showDetail="true" sticky="false" />  
+                <p:outputLabel value="Materijali za predavanja: "/>
+                <p:fileUpload fileUploadListener="#{administrator.handleFileUpload}"
+                              mode="advanced"
+                              update=":f2:growl"
+                              auto="false"  
+                              multiple="true" 
+                              invalidFileMessage="Pogrešan tip fajla"
+                              invalidSizeMessage="Maksimalna veličina fajla je 5MB"
+                              sizeLimit="5242880"  
+                              fileLimit="10" 
+                              allowTypes="/(\.|\/)(gif|jpe?g|png|pdf|doc|docx|ppt|pptx|pps|xls|xlsx|cvs|mp3|wav|wma|wmv|fla|mp4|avi|mpeg|mpg)$/" />
+
+            </h:form>
+
+            <h:form id="f3">
+                <p:growl id="growl1" showDetail="true" sticky="false" />  
+                <p:outputLabel value="Materijali za vežbe: "/>
+                <p:fileUpload fileUploadListener="#{administrator.handleFileUploadVezbe}"
+                              mode="advanced"
+                              update=":f3:growl1"
+                              auto="false"  
+                              multiple="true" 
+                              invalidFileMessage="Pogrešan tip fajla"
+                              invalidSizeMessage="Maksimalna veličina fajla je 5MB"
+                              sizeLimit="5242880"  
+                              fileLimit="10" 
+                              allowTypes="/(\.|\/)(gif|jpe?g|png|pdf|doc|docx|ppt|pptx|pps|xls|xlsx|cvs|mp3|wav|wma|wmv|fla|mp4|avi|mpeg|mpg)$/" />
+
+            </h:form>
+            <br/><br/>
+            <a href="index_ulogovan.xhtml" >Povratak</a>
+        </div>
+    </h:body>
+</html>
+

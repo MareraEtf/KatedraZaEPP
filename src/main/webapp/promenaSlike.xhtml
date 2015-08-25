@@ -1,0 +1,32 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:p="http://primefaces.org/ui">
+    <h:head>
+        <title>Facelet Title</title>
+    </h:head>
+    <h:body>
+        <div style="width: 600px; margin:0 auto;">
+            <h:form id="form">
+                <p:messages showDetail="false" id="greske"/>
+                <p:outputLabel value="Priloženi fajlovi: "/>
+                <p:fileUpload fileUploadListener="#{nastavniciControler.handleFileUpload}"
+                              mode="advanced"
+                              update=":form:greske"
+                              auto="false"  
+                              invalidFileMessage="Pogrešan tip fajla"
+                              invalidSizeMessage="Maksimalna veličina fajla je 5MB"
+                              multiple="true"
+                              sizeLimit="5242880"   
+                              allowTypes="/(\.|\/)(gif|jpe?g|png|pdf|doc|docx|ppt|pptx|pps|xls|xlsx|cvs|mp3|wav|wma|wmv|fla|mp4|avi|mpeg|mpg)$/" />
+            </h:form>
+            <h:form>
+                <h:commandButton action="#{nastavniciControler.povratak()}" value="Povratak" />
+            </h:form>
+
+            <a href="promenaPodataka.xhtml">Povratak</a>
+        </div>
+    </h:body>
+</html>
+

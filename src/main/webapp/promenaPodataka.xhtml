@@ -7,25 +7,38 @@
     <h:head>
         <meta name="description" content="" />
         <meta name="keywords" content="" />
-        <meta http-equiv="content-type" content="text/html; charset=utf-8" />
-        <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
+        <meta http-equiv="content-type" content="text/html; charset=utf-8;" />
     </h:head>
     <h:body>
         <ui:composition template="template.xhtml">
             <ui:define name="pagetitle">Promena podataka</ui:define>
             <ui:define name="breadcrumps"><a href="#">Početna</a>&nbsp;>&nbsp;<a href="#">#{login.korisnik.zvanje}&nbsp;#{login.korisnik.ime}&nbsp;#{login.korisnik.prezime}</a></ui:define>
-            <ui:define name="sredina_sadrzaj">
-
-                #{nastavniciControler.sacuvajStarePodatke()}
+            <ui:define name="sredina_sadrzaj"> 
 
                 <h2>#{login.korisnik.zvanje}&nbsp;#{login.korisnik.ime}&nbsp;#{login.korisnik.prezime}</h2>
                 <br/><br/>
                 <div class="box">
+
+                    <table>
+                        <tr> 
+                            <td><p:graphicImage width="150" height="150" value="upload/slikePredavaca/#{login.korisnik.slika}" /></td>
+                            <td><h:form id="form">
+                                    <p:growl id="growl" showDetail="true" sticky="true" />  
+                                    <p:outputLabel value="Priloženi fajlovi: "/>
+                                    <p:fileUpload fileUploadListener="#{nastavniciControler.handleFileUpload}"
+                                                  mode="advanced"
+                                                  update=":form:growl"
+                                                  auto="false"  
+                                                  invalidFileMessage="Pogrešan tip fajla"
+                                                  invalidSizeMessage="Maksimalna veličina fajla je 5MB"
+                                                  sizeLimit="5242880"   
+                                                  allowTypes="/(\.|\/)(gif|jpe?g|png|pdf|doc|docx|ppt|pptx|pps|xls|xlsx|cvs|mp3|wav|wma|wmv|fla|mp4|avi|mpeg|mpg)$/" />
+                                </h:form>
+                            </td>
+                        </tr>
+                    </table>
                     <h:form>
                         <table>
-                            <tr>
-                                <td><p:graphicImage width="150" height="150" value="upload/slikePredavaca/#{login.korisnik.slika}" /></td>
-                            </tr>
                             <tr>
                                 <td>Email:</td>
                                 <td><p:inputText value="#{login.korisnik.email}" /></td>
@@ -39,7 +52,8 @@
                                 <td><p:inputText value="#{login.korisnik.konsultacije}" /></td>
                             </tr>
                         </table>
-                        <a href="promenaTeksta.xhtml">Promena ostalog teksta</a><br/>
+                        <br/>
+                        <p:editor id="editor" widgetVar="editorWidget" value="#{login.korisnik.tekst}" width="600" />
 
                         <h:commandButton action="#{nastavniciControler.promeniPodatke(login.korisnik)}" value="Potvrdi" />
                     </h:form>

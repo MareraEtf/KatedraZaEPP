@@ -6,10 +6,13 @@
     <property name="hibernate.connection.driver_class">com.mysql.jdbc.Driver</property>
     <property name="hibernate.connection.url">jdbc:mysql://localhost:3306/baza</property>
     <property name="hibernate.connection.username">root</property>
-    <property name="hibernate.connection.pool_size">100</property>
+    <property name="hibernate.connection.pool_size">300</property>
     <mapping class="db.Korisnik"/>
     <mapping class="db.Obavestenje"/>
     <mapping class="db.Kurs"/>
     <mapping class="db.Predavac_kurs"/>
+    <mapping class="db.Kurs_stavke"/>
+    <mapping class="db.Materijal"/>
+    <mapping class="db.Obavestenje_kurs"/>
   </session-factory>
 </hibernate-configuration>

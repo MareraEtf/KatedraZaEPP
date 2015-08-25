@@ -118,11 +118,29 @@ public class Login implements Serializable {
             session.getTransaction().commit();
             session.close();
             FacesContext.getCurrentInstance().getExternalContext().getSessionMap().put("korisnik", korisnik);
-            return "index_ulogovan";
+            return "index_ulogovan.xhmtl";
         } else {
             session.close();
             FacesContext.getCurrentInstance().addMessage(null, new FacesMessage("Greška", "Pogrešno korisničko ime i šifra"));
         }
         return null;
     }
+
+    public String izloguj() {
+
+        session = dbFactory.getFactory().openSession();
+        session.beginTransaction();
+        korisnik.setUlogovan(false);
+        session.update(korisnik);
+        session.getTransaction().commit();
+        session.close();
+        FacesContext.getCurrentInstance().getExternalContext().invalidateSession();
+        return "index?faces-redirect=true";
+    }
+
+    public String redirect(String stranica) {
+        String temp = stranica + "?faces-redirect=true";
+        return temp;
+    }
+
 }

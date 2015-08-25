@@ -10,41 +10,19 @@
         <meta name="description" content="" />
         <meta name="keywords" content="" />
         <meta http-equiv="content-type" content="text/html; charset=utf-8" />
-        <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
-        <script type="text/javascript" src="resources/script/jquery.dropotron-1.0.js"></script>
-        <script type="text/javascript" src="resources/script/jquery.slidertron-1.1.js"></script>
-        <script type="text/javascript">
-            $(function () {
-                $('#menu > ul').dropotron({
-                    mode: 'fade',
-                    globalOffsetY: 11,
-                    offsetY: -15
-                });
-                $('#slider').slidertron({
-                    viewerSelector: '.viewer',
-                    indicatorSelector: '.indicator span',
-                    reelSelector: '.reel',
-                    slidesSelector: '.slide',
-                    speed: 'slow',
-                    advanceDelay: 4000
-                });
-            });
-        </script>
     </h:head>
     <h:body>
         <ui:composition template="template.xhtml">
-            <ui:define name="pagetitle">Obaveštenja</ui:define>
-            <ui:define name="breadcrumps"><a href="#">Početna</a>&nbsp;>&nbsp;<a href="#">Obaveštenja</a></ui:define>
+            <ui:define name="pagetitle">Kurs index</ui:define>
+            <ui:define name="breadcrumps"><a href="#">Početna</a>&nbsp;>&nbsp;<a href="#">Obaveštenja o predmetu</a></ui:define>
             <ui:define name="sredina_sadrzaj">
-
-                <h2>Obaveštenja</h2>
+                <h2>Obaveštenja o predmetu</h2>
                 <br/>
 
-                #{controller.inicijalizujStranicu()}
                 <h:form id="form">
 
                     <h:outputLabel for="pretraga" value="Izaberite kategoriju: " />
-                    <h:selectOneMenu id="pretraga" value="#{controller.tipObavestenja}" onchange="submit()" valueChangeListener="#{controller.pretraziObavestenja}" style="width:125px">
+                    <h:selectOneMenu id="pretraga" value="#{predmetControler.tipObavestenja}" onchange="submit()" valueChangeListener="#{predmetControler.pretraziObavestenja}" style="width:125px">
                         <f:selectItem itemLabel="Izaberite" itemValue="" />
                         <f:selectItem itemLabel="Prikaži sva" itemValue="sve" />
                         <f:selectItem itemLabel="Posao" itemValue="posao" />
@@ -54,15 +32,15 @@
                     <br /><br />
                     <p:separator />
                     <br /><br />
-                    <ui:repeat value="#{controller.petObavestenja}" var="o">
+                    <ui:repeat value="#{predmetControler.petObavestenja}" var="o">
                         <div class="box">
                             <h3>#{o.naziv}&nbsp;(#{o.tip})&nbsp;&nbsp;#{o.datum}</h3>
                             <p>#{o.tekst}</p>
                         </div>
                     </ui:repeat>
                     <div style="float: right; margin-right: 5px">
-                        <h:selectOneMenu  value="#{controller.strana}" onchange="submit()" valueChangeListener="#{controller.promeniStranu}">
-                            <c:forEach begin="1" end="#{controller.ukupnoStrana}" step="1" var="i">
+                        <h:selectOneMenu  value="#{predmetControler.strana}" onchange="submit()" valueChangeListener="#{predmetControler.promeniStranu}">
+                            <c:forEach begin="1" end="#{predmetControler.ukupnoStrana}" step="1" var="i">
                                 <f:selectItem itemLabel="#{i}" itemValue="#{i}" />
                             </c:forEach>
                         </h:selectOneMenu>

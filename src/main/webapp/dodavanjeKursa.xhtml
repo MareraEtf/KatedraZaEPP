@@ -1,0 +1,166 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+    <h:head>
+        <meta name="description" content="" />
+        <meta name="keywords" content="" />
+        <meta http-equiv="content-type" content="text/html; charset=utf-8" />
+    </h:head>
+    <h:body>
+        <ui:composition template="template.xhtml">
+            <ui:define name="pagetitle">Dodavanje kursa</ui:define>
+            <ui:define name="breadcrumps"><a href="#">Početna</a>&nbsp;>&nbsp;<a href="#">Dodavanje kursa</a></ui:define>
+            <ui:define name="sredina_sadrzaj">
+                <div class="box">
+                    #{administrator.inicijalizujPredavace()}
+                    <h2>Dodavanje kursa</h2>
+                    <h:form id="f1">
+                        <p:growl id="growl" showDetail="true" sticky="false" />
+                        <table>
+                            <tr>
+                                <td width="100">
+                                    <h:outputLabel for="naziv" value="Naziv" />
+                                </td>
+                                <td>
+                                    <p:inputText id="naziv" value="#{administrator.kurs.nazivKursa}" required="true" />
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>&nbsp;</td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <h:outputLabel for="sifra" value="Šifra kursa" />
+                                </td>
+                                <td>
+                                    <p:inputText id="sifra" value="#{administrator.kurs.sifra}" required="true"/>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>&nbsp;</td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <h:outputLabel for="studije" value="Studije" />
+                                </td>
+                                <td>
+                                    <h:selectOneMenu id="studije" value="#{administrator.kurs.studije}" style="width:125px" required="true">
+                                        <p:ajax update="f1:god" event="change"/>
+                                        <f:selectItem itemLabel="Izaberite" itemValue="" />
+                                        <f:selectItem itemLabel="Osnovne" itemValue="osnovne" />
+                                        <f:selectItem itemLabel="Master" itemValue="master" />
+                                        <f:selectItem itemLabel="Doktorske" itemValue="doktorske" />
+                                    </h:selectOneMenu>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>&nbsp;</td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <h:outputText value="Godina" />
+                                </td>
+                                <td>
+                                    <h:panelGroup id="god">
+                                        <p:inputText value="#{administrator.kurs.godina}" rendered="#{(administrator.kurs.studije == 'osnovne') || (administrator.kurs.studije == null) || (administrator.kurs.studije == '')}" required="true"/>
+                                        <p:inputText value="#{administrator.kurs.godina}" disabled="true" rendered="#{(administrator.kurs.studije == 'master') || (administrator.kurs.studije == 'doktorske')}" />
+                                    </h:panelGroup>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>&nbsp;</td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <h:outputLabel for="semestar" value="Semestar" />
+                                </td>
+                                <td>
+                                    <p:inputText id="semestar" value="#{administrator.kurs.semestar}" required="true"/>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>&nbsp;</td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <h:outputLabel for="tip" value="Tip" />
+                                </td>
+                                <td>
+                                    <h:selectOneMenu id="tip" value="#{administrator.kurs.tip}" style="width:125px" required="true">
+                                        <f:selectItem itemLabel="Izaberite" itemValue="" />
+                                        <f:selectItem itemLabel="Obevezan" itemValue="obavezan" />
+                                        <f:selectItem itemLabel="Izborni" itemValue="izborni" />
+                                    </h:selectOneMenu>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>&nbsp;</td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <h:outputLabel for="predavaci" value="Predavači" />
+                                </td>
+                                <td>
+                                    <p:pickList id="predavaci" value="#{administrator.predavaci}" var="predavac" itemLabel="#{predavac.ime} #{predavac.prezime}" itemValue="#{predavac.IDKor}" required="true"/>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>&nbsp;</td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <h:outputLabel for="stavkeMenija" value="Stavke menija" />
+                                </td>
+                                <td>
+                                    <p:pickList id="stavkeMenija" value="#{administrator.stavke}" var="stavka" itemLabel="#{stavka}" itemValue="#{stavka}" />
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>&nbsp;</td>
+                            </tr>
+                            <tr>
+                                <td colspan="2">
+                                    <h:commandButton action="#{administrator.dodajKurs()}" value="Potvrdi" />
+                                </td>       
+                            </tr>
+                        </table>
+                    </h:form>
+                    <br/>
+                    <table>
+                        <h:form>
+                            <tr> 
+                                <td colspan="2">
+                                    <h:panelGroup rendered="#{administrator.flag}">
+                                        <a href="dodajMaterijale.xhtml">Dodaj materijale</a>
+                                    </h:panelGroup>
+                                    <h:panelGroup rendered="#{not administrator.flag}" >
+                                        Dodaj materijale
+                                    </h:panelGroup>
+                                </td>
+                            </tr>
+                        </h:form>
+                    </table>
+
+
+                </div>
+
+                <br class="clearfix" />
+            </ui:define>
+            <ui:define name="sredina_sidebar">
+            </ui:define>
+
+            <ui:define name="dole">
+                <h3>Magnis hendrerit erat</h3>
+                <p>
+                    Euismod sodales sociis hendrerit pulvinar acursus urna. Consectetur egestas sodales at ornare laoreet turpis. Lorem id sapien ridiculus sagittis imperdiet urna suspendisse. Posuere arcu parturient quam risus. Aliquam nullam magnis integer gravida vulputate felis. Consectetur montes sollicitudin dictum. Auctor sociis hendrerit pulvinar acursus urna lorem ipsum dolor vivamus pulvinar libero. Massa egestas cubilia lacus augue mattis consectetur.
+                </p>
+            </ui:define>
+
+        </ui:composition>
+    </h:body>
+</html>
+

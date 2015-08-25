@@ -9,14 +9,23 @@ import db.Korisnik;
 import db.Kurs;
 import db.Predavac_kurs;
 import db.dbFactory;
+import java.io.File;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.io.InputStream;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Random;
 import javax.enterprise.context.SessionScoped;
+import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
+import javax.faces.context.ExternalContext;
 import javax.faces.context.FacesContext;
 import org.hibernate.Query;
 import org.hibernate.Session;
+import org.primefaces.event.FileUploadEvent;
+import org.primefaces.model.UploadedFile;
 
 /**
  *
@@ -139,11 +148,14 @@ public class NastavniciControler implements Serializable {
         FacesContext.getCurrentInstance().getExternalContext().getSessionMap().remove("korisnik");
         FacesContext.getCurrentInstance().getExternalContext().getSessionMap().put("korisnik", korisnik);
 
+        FacesMessage msg = new FacesMessage("Poruka", "Uspešno ste promenili podatke");
+        FacesContext.getCurrentInstance().addMessage(null, msg);
+
     }
 
     public void sacuvajStarePodatke() {
 
-        stariPodaci = (Korisnik) FacesContext.getCurrentInstance().getExternalContext().getSessionMap().get("korisnik");
+        setStariPodaci((Korisnik) FacesContext.getCurrentInstance().getExternalContext().getSessionMap().get("korisnik"));
 
     }
 
@@ -183,6 +195,56 @@ public class NastavniciControler implements Serializable {
         Query q = session.createQuery("FROM Kurs");
         kurseviSvi = q.list();
         session.close();
+    }
+
+    public void handleFileUpload(FileUploadEvent event) throws IOException {
+
+        FacesMessage msg = new FacesMessage("Upload", event.getFile().getFileName() + " je postavljen na server.");
+        FacesContext.getCurrentInstance().addMessage(null, msg);
+
+//        FacesContext context = FacesContext.getCurrentInstance();
+//        context.addMessage(null, new FacesMessage("Successful", "Your message: "));
+        ExternalContext extContext = FacesContext.getCurrentInstance().getExternalContext();
+//        Random r = new Random();
+//        int broj = r.nextInt(100000);
+//        File result = new File(extContext.getRealPath("//resources//uploads//" + Integer.toString(broj) + event.getFile().getFileName()));      
+//        File result = new File("C:\\Users\\Marko\\Desktop\\proba\\" + event.getFile().getFileName());
+        File result = new File("C:\\Users\\Marko\\Desktop\\FAX\\Diplomski\\Diplomski\\src\\main\\webapp\\upload\\slikePredavaca\\" + event.getFile().getFileName());
+//        File result = new File(extContext.getRealPath("..//..//web//resources//uploads//" + event.getFile().getFileName()));
+        UploadedFile file = event.getFile();
+        Korisnik kor = (Korisnik) FacesContext.getCurrentInstance().getExternalContext().getSessionMap().get("korisnik");
+        kor.setSlika(event.getFile().getFileName());
+        try {
+
+            FileOutputStream fos = new FileOutputStream(result);
+            InputStream is = file.getInputstream();
+            int BUFFER_SIZE = 8192;
+            byte[] buffer = new byte[BUFFER_SIZE];
+            int a;
+            while (true) {
+                a = is.read(buffer);
+                if (a < 0) {
+                    break;
+                }
+                fos.write(buffer, 0, a);
+                fos.flush();
+            }
+            fos.close();
+            is.close();
+
+        } catch (IOException e) {
+        }
+
+        session = dbFactory.getFactory().openSession();
+        session.beginTransaction();
+        session.update(kor);
+        session.getTransaction().commit();
+        session.close();
+    }
+
+    public String povratak() {
+
+        return "promenaPodataka?faces-redirect=true";
     }
 
 }

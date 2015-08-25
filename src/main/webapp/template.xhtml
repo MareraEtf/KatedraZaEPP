@@ -12,7 +12,6 @@
             <meta name="keywords" content="" />
             <meta http-equiv="content-type" content="text/html; charset=utf-8" />
             <link rel="stylesheet" type="text/css" href="resources/css/style.css" />
-            <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
             <script type="text/javascript" src="resources/script/jquery.dropotron-1.0.js"></script>
             <script type="text/javascript" src="resources/script/jquery.slidertron-1.1.js"></script>
             <script type="text/javascript">
@@ -41,17 +40,19 @@
                     </div>
                 </div>
                 <div id="menu">
+
                     <ul>
-                        <li class="first"><a href="index.xhtml">#{msgs.meni1}</a></li>
-                        <li><a href="nastavnici.xhtml">#{msgs.meni2}</a></li>
-                        <li><a href="obavestenja.xhtml?#{localeChanger.locale}">#{msgs.meni3}</a></li>
+
+                        <li class="first"><h:form><h:commandLink action="#{login.redirect('index')}" value="#{msgs.meni1}" /></h:form></li>
+                        <li><h:form><h:commandLink action="#{login.redirect('nastavnici')}" value="#{msgs.meni2}" /></h:form></li>
+                        <li><h:form><h:commandLink action="#{login.redirect('obavestenja')}" value="#{msgs.meni3}" /></h:form></li>
                         <li>
                             <span class="opener">#{msgs.meni4}<b></b></span>
                             <ul>
                                 <li>
                                     <span>#{msgs.meni41}<b></b></span>
                                     <ul>
-                                        <li><a href="#">#{msgs.meni411}</a></li>
+                                        <li><h:form><h:commandLink action="#{login.redirect('predmetiOsnovneStudijeEPP')}" value="#{msgs.meni411}" /></h:form></li>
                                         <li><a href="#">#{msgs.meni412}</a></li>
                                     </ul>
                                 </li>
@@ -64,7 +65,9 @@
                         <li><a href="#">#{msgs.meni6}</a></li>
                         <li><a href="#">#{msgs.meni7}</a></li>
                         <li class="last"><a href="#">#{msgs.meni8}</a></li>
+
                     </ul>
+
                     <br class="clearfix" />
                 </div>
                 <div style="float: left; margin-left: 15px;">
@@ -72,6 +75,7 @@
                 </div>
                 <div style="float: right; margin-right: 5px">
                     <h:form>
+                        <h:outputText value="#{msgs.jezik}" />
                         <h:selectOneMenu value="#{localeChanger.language}" onchange="submit()">
                             <f:selectItem itemValue="latin" itemLabel="Latinica" />
                             <f:selectItem itemValue="cyrillic" itemLabel="Cirilica" />
@@ -169,6 +173,9 @@
                                 <h:panelGroup rendered="#{login.korisnik.tip eq 1}">
                                     <a href="promenaPodataka.xhtml" >Promena ličnih podataka</a>
                                 </h:panelGroup>
+                                <h:panelGroup rendered="#{login.korisnik.tip eq 4}">
+                                    <a href="dodavanjeKursa.xhtml" >Dodavanje kursa</a>
+                                </h:panelGroup>
                             </div>
                             <div class="box">
                                 <h3>Morbi at varius</h3>
@@ -196,16 +203,25 @@
                         </ui:insert>
                     </div>
                     <div id="page-bottom-sidebar">
-                        <h3>#{msgs.logovanje}</h3>
-                        <h:form style="background-color: #6E6E6E">  
-                            <h:panelGroup rendered="#{not login.korisnik.ulogovan}">
+
+                        <h:panelGroup rendered="#{not login.korisnik.ulogovan}">
+                            <h:form style="background-color: #6E6E6E">  
+                                <h3>#{msgs.logovanje}</h3>
                                 <h:outputLabel for="username" value="#{msgs.korisnickoIme}" style="font-size: 11.5pt; font-family: Georgia, serif; color: #DCDCDC;" />
                                 <p:inputText id="username" value="#{login.korisnik.korisnicko_ime}" /><br />
                                 <h:outputLabel for="password" value="#{msgs.sifra}" style="font-size: 11.5pt; font-family: Georgia, serif; color: #DCDCDC;" /> <br /> 
                                 <p:password id="password" value="#{login.korisnik.sifra}" required="true"  requiredMessage="Šifra je potrebna" /><br />
-                                <p:commandButton value="#{msgs.dugme}" action="#{login.uloguj()}" icon="ui-icon-unlocked" styleClass="loginButton" style="margin-top: 5px; font-size: 11.5pt; font-family: Georgia, serif;" />
-                            </h:panelGroup>
-                        </h:form>
+                                <h:commandButton action="#{login.uloguj()}" value="ok" />
+                            </h:form>
+                        </h:panelGroup>
+
+                        <h:panelGroup rendered="#{login.korisnik.ulogovan}">
+                            <h:form style="background-color: #6E6E6E">  
+                                <h4>Ulogovani ste kao:</h4>
+                                <h:outputLabel for="username" value="#{login.korisnik.korisnicko_ime}" style="font-size: 11.5pt; font-family: Georgia, serif; color: #DCDCDC;" />
+                                (<p:commandLink value="Izloguj se" action="#{login.izloguj()}" style="margin-top: 5px; font-size: 11.5pt; font-family: Georgia, serif; color: #FFFFFF" />)
+                            </h:form>
+                        </h:panelGroup>
 
                     </div>
                     <br class="clearfix" />

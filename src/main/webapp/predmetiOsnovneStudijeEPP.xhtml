@@ -56,7 +56,9 @@
                         </tr>
                         <tr align="center">
                             <td>
-                                <h:outputText value="Elektromagnetika" />
+                                <h:form>
+                                    <h:commandLink action="#{predmetControler.ucitajPredmet('Elektromagnetika')}" value="Elektromagnetika" />
+                                </h:form>
                             </td>
                             <td>
                                 <h:outputText value="11" />

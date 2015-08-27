@@ -16,38 +16,39 @@
             <ui:define name="pagetitle">Kurs index</ui:define>
             <ui:define name="breadcrumps"><a href="#">Početna</a>&nbsp;>&nbsp;<a href="#">Obaveštenja o predmetu</a></ui:define>
             <ui:define name="sredina_sadrzaj">
-                <h2>Obaveštenja o predmetu</h2>
-                <br/>
+                <div style="float: left; margin-left: 90px">
+                    <table width="200" border="1">
+                        <tr>
+                            <td>
+                                Predavanja
+                            </td>
+                        </tr>
+                        <ui:repeat value="#{predmetControler.materijaliPredavanja}" var="predavanja">
+                            <tr>
+                                <td>
+                                    #{predavanja.podatak}
+                                </td>
+                            </tr>
+                        </ui:repeat>
+                    </table>
+                </div>
+                <div style="float: right; margin-right: 110px">
+                    <table width="200" border="1">
+                        <tr>
+                            <td>
+                                Vežbe
+                            </td>
+                        </tr>
+                        <ui:repeat value="#{predmetControler.materijaliVezbe}" var="vezbe">
+                            <tr>
+                                <td>
+                                    #{vezbe.podatak}
+                                </td>
+                            </tr>
+                        </ui:repeat>
+                    </table>
+                </div>
 
-                <h:form id="form">
-
-                    <h:outputLabel for="pretraga" value="Izaberite kategoriju: " />
-                    <h:selectOneMenu id="pretraga" value="#{predmetControler.tipObavestenja}" onchange="submit()" valueChangeListener="#{predmetControler.pretraziObavestenja}" style="width:125px">
-                        <f:selectItem itemLabel="Izaberite" itemValue="" />
-                        <f:selectItem itemLabel="Prikaži sva" itemValue="sve" />
-                        <f:selectItem itemLabel="Posao" itemValue="posao" />
-                        <f:selectItem itemLabel="Praksa" itemValue="praksa" />
-                        <f:selectItem itemLabel="Takmičenje" itemValue="takmicenje" />
-                    </h:selectOneMenu>
-                    <br /><br />
-                    <p:separator />
-                    <br /><br />
-                    <ui:repeat value="#{predmetControler.petObavestenja}" var="o">
-                        <div class="box">
-                            <h3>#{o.naziv}&nbsp;(#{o.tip})&nbsp;&nbsp;#{o.datum}</h3>
-                            <p>#{o.tekst}</p>
-                        </div>
-                    </ui:repeat>
-                    <div style="float: right; margin-right: 5px">
-                        <h:selectOneMenu  value="#{predmetControler.strana}" onchange="submit()" valueChangeListener="#{predmetControler.promeniStranu}">
-                            <c:forEach begin="1" end="#{predmetControler.ukupnoStrana}" step="1" var="i">
-                                <f:selectItem itemLabel="#{i}" itemValue="#{i}" />
-                            </c:forEach>
-                        </h:selectOneMenu>
-                    </div>
-                </h:form>
-
-                <br class="clearfix" />
             </ui:define>
             <ui:define name="sredina_sidebar">
 
@@ -60,9 +61,6 @@
                         <ui:repeat value="#{predmetControler.stavkeMenija}" var="stavka">
                             <h4><h:commandLink action="#{predmetControler.akcija()}" value="#{stavka.stavka}" /></h4>
                         </ui:repeat>
-                    </h:form>
-                    <h:form>
-                        <h4><h:commandLink action="#{predmetControler.materijali()}" value="materijali" /></h4>
                     </h:form>
                 </div>
 

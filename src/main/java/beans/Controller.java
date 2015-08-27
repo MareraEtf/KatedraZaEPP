@@ -84,7 +84,7 @@ public class Controller {
         this.session = session;
     }
 
-    public void inicijalizujStranicu() {
+    public String inicijalizujStranicu() {
 
         if (tipObavestenja == null) {
             petObavestenja.clear();
@@ -100,8 +100,9 @@ public class Controller {
             for (int i = 0; i < 5; i++) {
                 petObavestenja.add(obavestenjaSva.get(i));
             }
+            return "obavestenja.xhtml";
         }
-
+        return "obavestenja.xhtml";
     }
 
     public void dohvSvaObavestenja() {

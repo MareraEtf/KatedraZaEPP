@@ -1,0 +1,371 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+    <h:head>
+        <meta name="description" content="" />
+        <meta name="keywords" content="" />
+        <meta http-equiv="content-type" content="text/html; charset=utf-8" />
+    </h:head>
+    <h:body>
+        <ui:composition template="template.xhtml">
+            <ui:define name="pagetitle">Predmeti osnovne studijw</ui:define>
+            <ui:define name="breadcrumps"><a href="#">Početna</a>&nbsp;>&nbsp;<a href="#">Osnovne studije</a>&nbsp;>&nbsp;<a href="#">Odsek za energetiku</a></ui:define>
+            <ui:define name="sredina_sadrzaj">
+                <h2>Master studije</h2>
+                <br/><br/>
+                <div class="box">
+                    <table border="1" width="660">
+                        <tr align="center" bgcolor="#209D9D" style="color: white">
+                            <td colspan="4">
+                                <h:outputText value="1. semestar" />
+                            </td>
+                        </tr>
+                        <tr align="center" bgcolor="#209D9D" style="color: white">
+                            <td width="441px">
+                                <h:outputText value="Naziv predmeta" />
+                            </td>
+                            <td>
+                                <h:outputText value="Status" />
+                            </td>
+                            <td>
+                                <h:outputText value="Časovi P+V+L" />
+                            </td>
+                            <td>
+                                <h:outputText value="Krediti" />
+                            </td>
+                        </tr>
+                        <tr align="center" bgcolor="#209D9D" style="color: white">
+                            <td colspan="4">
+                                <h:outputText value="Uže stručni predmeti - Grupa A" />
+                            </td>
+                        </tr>
+                        <tr align="center" style="font-size: 10.5pt">
+                            <td>
+                                <h:form>
+                                    <h:commandLink action="#{predmetControler.ucitajPredmet('Odabrana poglavlja iz elektromotornih pogona')}" value="Odabrana poglavlja iz elektromotornih pogona" />
+                                </h:form>
+                            </td>
+                            <td>
+                                <h:outputText value="I" />
+                            </td>
+                            <td>
+                                <h:outputText value="3+1+0" />
+                            </td>
+                            <td>
+                                <h:outputText value="6" />
+                            </td>
+                        </tr>
+                        <tr align="center" style="font-size: 10.5pt">
+                            <td>
+                                <h:form>
+                                    <h:commandLink action="#{predmetControler.ucitajPredmet('Digitalno upravljanje EPP 2')}" value="Digitalno upravljanje EPP 2" />
+                                </h:form>
+                            </td>
+                            <td>
+                                <h:outputText value="I" />
+                            </td>
+                            <td>
+                                <h:outputText value="2+1+1" />
+                            </td>
+                            <td>
+                                <h:outputText value="6" />
+                            </td>
+                        </tr>
+                        <tr align="center" style="font-size: 10.5pt">
+                            <td>
+                                <h:form>
+                                    <h:commandLink action="#{predmetControler.ucitajPredmet('Energetske prigušnice')}" value="Energetske prigušnice" />&nbsp;<sup>1)</sup>
+                                </h:form>
+                            </td>
+                            <td>
+                                <h:outputText value="I" />
+                            </td>
+                            <td>
+                                <h:outputText value="3+1+0" />
+                            </td>
+                            <td>
+                                <h:outputText value="6" />
+                            </td>
+                        </tr>
+                        <tr align="center" bgcolor="#209D9D" style="color: white">
+                            <td colspan="4">
+                                <h:outputText value="Predmeti sa osnovnih studija - Grupa B" />
+                            </td>
+                        </tr>
+                        <tr align="center" style="font-size: 10.5pt">
+                            <td>
+                                <h:form>
+                                    <h:commandLink action="#{predmetControler.ucitajPredmet('Električno osvetljenje')}" value="Električno osvetljenje" />
+                                </h:form>
+                            </td>
+                            <td>
+                                <h:outputText value="I" />
+                            </td>
+                            <td>
+                                <h:outputText value="2+2+0" />
+                            </td>
+                            <td>
+                                <h:outputText value="6" />
+                            </td>
+                        </tr>
+                        <tr align="center" style="font-size: 10.5pt">
+                            <td>
+                                <h:form>
+                                    <h:commandLink action="#{predmetControler.ucitajPredmet('Zagrevanje i zaštita električnih mašina')}" value="Zagrevanje i zaštita električnih mašina" />
+                                </h:form>
+                            </td>
+                            <td>
+                                <h:outputText value="I" />
+                            </td>
+                            <td>
+                                <h:outputText value="3+1+0" />
+                            </td>
+                            <td>
+                                <h:outputText value="6" />
+                            </td>
+                        </tr>
+                        <tr align="center" style="font-size: 10.5pt">
+                            <td>
+                                <h:form>
+                                    <h:commandLink action="#{predmetControler.ucitajPredmet('Specijalne električne instalacije')}" value="Specijalne električne instalacije" />
+                                </h:form>
+                            </td>
+                            <td>
+                                <h:outputText value="I" />
+                            </td>
+                            <td>
+                                <h:outputText value="2+1+1" />
+                            </td>
+                            <td>
+                                <h:outputText value="6" />
+                            </td>
+                        </tr>
+                    </table>
+                </div>
+
+                <div class="box">
+                    <table border="1" width="660">
+                        <tr align="center" bgcolor="#209D9D" style="color: white">
+                            <td colspan="4">
+                                <h:outputText value="2. semestar" />
+                            </td>
+                        </tr>
+                        <tr align="center" bgcolor="#209D9D" style="color: white">
+                            <td width="441px">
+                                <h:outputText value="Naziv predmeta" />
+                            </td>
+                            <td>
+                                <h:outputText value="Status" />
+                            </td>
+                            <td>
+                                <h:outputText value="Časovi P+V+L" />
+                            </td>
+                            <td>
+                                <h:outputText value="Krediti" />
+                            </td>
+                        </tr>
+                        <tr align="center" bgcolor="#209D9D" style="color: white">
+                            <td colspan="4">
+                                <h:outputText value="Uže stručni predmeti - Grupa A" />
+                            </td>
+                        </tr>
+                        <tr align="center" style="font-size: 10.5pt">
+                            <td>
+                                <h:form>
+                                    <h:commandLink action="#{predmetControler.ucitajPredmet('Sinhroni servomotori sa permanentnim magnetima')}" value="Sinhroni servomotori sa permanentnim magnetima" />
+                                </h:form>
+                            </td>
+                            <td>
+                                <h:outputText value="I" />
+                            </td>
+                            <td>
+                                <h:outputText value="3+1+0" />
+                            </td>
+                            <td>
+                                <h:outputText value="6" />
+                            </td>
+                        </tr>
+                        <tr align="center" style="font-size: 10.5pt">
+                            <td>
+                                <h:form>
+                                    <h:commandLink action="#{predmetControler.ucitajPredmet('Matematičko modelovanje i računarska simulacija termičkih procesa')}" value="Matematičko modelovanje i računarska simulacija termičkih procesa" />
+                                </h:form>
+                            </td>
+                            <td>
+                                <h:outputText value="I" />
+                            </td>
+                            <td>
+                                <h:outputText value="3+1+0" />
+                            </td>
+                            <td>
+                                <h:outputText value="6" />
+                            </td>
+                        </tr>
+                        <tr align="center" style="font-size: 10.5pt">
+                            <td>
+                                <h:form>
+                                    <h:commandLink action="#{predmetControler.ucitajPredmet('Laboratorijske vežbe iz EPP')}" value="Laboratorijske vežbe iz EPP" />
+                                </h:form>
+                            </td>
+                            <td>
+                                <h:outputText value="I" />
+                            </td>
+                            <td>
+                                <h:outputText value="3+0+1" />
+                            </td>
+                            <td>
+                                <h:outputText value="6" />
+                            </td>
+                        </tr>
+                        <tr align="center" style="font-size: 10.5pt">
+                            <td>
+                                <h:form>
+                                    <h:commandLink action="#{predmetControler.ucitajPredmet('Energetski efikasni sistemi osvetljenja')}" value="Energetski efikasni sistemi osvetljenja" />
+                                </h:form>
+                            </td>
+                            <td>
+                                <h:outputText value="I" />
+                            </td>
+                            <td>
+                                <h:outputText value="3+1+0" />
+                            </td>
+                            <td>
+                                <h:outputText value="6" />
+                            </td>
+                        </tr>
+                        <tr align="center" bgcolor="#209D9D" style="color: white">
+                            <td colspan="4">
+                                <h:outputText value="Predmeti sa osnovnih studija - Grupa B" />
+                            </td>
+                        </tr>
+                        <tr align="center" style="font-size: 10.5pt">
+                            <td>
+                                <h:form>
+                                    <h:commandLink action="#{predmetControler.ucitajPredmet('Regulacija elektromotornih pogona')}" value="Regulacija elektromotornih pogona" />
+                                </h:form>
+                            </td>
+                            <td>
+                                <h:outputText value="I" />
+                            </td>
+                            <td>
+                                <h:outputText value="2+1,5+0,5" />
+                            </td>
+                            <td>
+                                <h:outputText value="6" />
+                            </td>
+                        </tr>
+                        <tr align="center" style="font-size: 10.5pt">
+                            <td>
+                                <h:form>
+                                    <h:commandLink action="#{predmetControler.ucitajPredmet('Upravljanje energetskim pretvaračima')}" value="Upravljanje energetskim pretvaračima" />
+                                </h:form>
+                            </td>
+                            <td>
+                                <h:outputText value="I" />
+                            </td>
+                            <td>
+                                <h:outputText value="2+1+1" />
+                            </td>
+                            <td>
+                                <h:outputText value="6" />
+                            </td>
+                        </tr>
+                        <tr align="center" style="font-size: 10.5pt">
+                            <td>
+                                <h:form>
+                                    <h:commandLink action="#{predmetControler.ucitajPredmet('Digitalno upravljanje pretvaračima i pogonima')}" value="Digitalno upravljanje pretvaračima i pogonima" />
+                                </h:form>
+                            </td>
+                            <td>
+                                <h:outputText value="I" />
+                            </td>
+                            <td>
+                                <h:outputText value="2+1+1" />
+                            </td>
+                            <td>
+                                <h:outputText value="6" />
+                            </td>
+                        </tr>
+                        <tr align="center" style="font-size: 10.5pt">
+                            <td>
+                                <h:form>
+                                    <h:commandLink action="#{predmetControler.ucitajPredmet('Elektrotermija')}" value="Elektrotermija" />&nbsp;<sup>1)</sup>
+                                </h:form>
+                            </td>
+                            <td>
+                                <h:outputText value="I" />
+                            </td>
+                            <td>
+                                <h:outputText value="2+1+1" />
+                            </td>
+                            <td>
+                                <h:outputText value="6" />
+                            </td>
+                        </tr>
+                        <tr align="center" style="font-size: 10.5pt">
+                            <td>
+                                <h:form>
+                                    <h:commandLink action="#{predmetControler.ucitajPredmet('Električne mašine jednosmerne struje')}" value="Električne mašine jednosmerne struje" />
+                                </h:form>
+                            </td>
+                            <td>
+                                <h:outputText value="I" />
+                            </td>
+                            <td>
+                                <h:outputText value="2+1+1" />
+                            </td>
+                            <td>
+                                <h:outputText value="6" />
+                            </td>
+                        </tr>
+                        <tr align="center" style="font-size: 10.5pt">
+                            <td>
+                                <h:form>
+                                    <h:commandLink action="#{predmetControler.ucitajPredmet('Završni rad')}" value="Završni rad" />
+                                </h:form>
+                            </td>
+                            <td>
+                                <h:outputText value="O" />
+                            </td>
+                            <td>
+                                <h:outputText value="" />
+                            </td>
+                            <td>
+                                <h:outputText value="30" />
+                            </td>
+                        </tr>
+                        <tr align="center">
+                            <td colspan="2">
+                                <h:outputText value="Ukupno" />
+                            </td>
+                            <td>
+                                <h:outputText value="26" />
+                            </td>
+                            <td>
+                                <h:outputText value="60" />
+                            </td>
+                        </tr>
+                    </table>
+                </div>
+                &nbsp;<sup>1)</sup>&nbsp;Predmet se ne nudi od školske 2013/14. godine.
+
+                <br class="clearfix" />
+            </ui:define>
+            <ui:define name="sredina_sidebar">
+            </ui:define>
+
+            <ui:define name="dole">
+                <h3>Magnis hendrerit erat</h3>
+                <p>
+                    Euismod sodales sociis hendrerit pulvinar acursus urna. Consectetur egestas sodales at ornare laoreet turpis. Lorem id sapien ridiculus sagittis imperdiet urna suspendisse. Posuere arcu parturient quam risus. Aliquam nullam magnis integer gravida vulputate felis. Consectetur montes sollicitudin dictum. Auctor sociis hendrerit pulvinar acursus urna lorem ipsum dolor vivamus pulvinar libero. Massa egestas cubilia lacus augue mattis consectetur.
+                </p>
+            </ui:define>
+
+        </ui:composition>
+    </h:body>
+</html>
+

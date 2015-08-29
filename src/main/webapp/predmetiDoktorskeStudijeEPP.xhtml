@@ -1,0 +1,294 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+    <h:head>
+        <meta name="description" content="" />
+        <meta name="keywords" content="" />
+        <meta http-equiv="content-type" content="text/html; charset=utf-8" />
+    </h:head>
+    <h:body>
+        <ui:composition template="template.xhtml">
+            <ui:define name="pagetitle">Predmeti Doktorske studije</ui:define>
+            <ui:define name="breadcrumps"><a href="#">Početna</a>&nbsp;>&nbsp;<a href="#">Osnovne studije</a>&nbsp;>&nbsp;<a href="#">Odsek za energetiku</a></ui:define>
+            <ui:define name="sredina_sadrzaj">
+                <h2>Doktorske studije</h2>
+                <br/><br/>
+                <div class="box">
+                    <table border="1" width="660">
+                        <tr align="center" bgcolor="#209D9D" style="color: white">
+                            <td width="441px">
+                                <h:outputText value="Naziv predmeta" />
+                            </td>
+                            <td>
+                                <h:outputText value="Časovi (P+SIR)" />
+                            </td>
+                            <td>
+                                <h:outputText value="Krediti" />
+                            </td>
+                        </tr>
+                        <tr align="center" bgcolor="#209D9D" style="color: white">
+                            <td colspan="4">
+                                <h:outputText value="Uže stručni predmeti - Grupa A" />
+                            </td>
+                        </tr>
+                        <tr align="center" style="font-size: 10.5pt">
+                            <td>
+                                <h:form>
+                                    <h:commandLink action="#{predmetControler.ucitajPredmet('Opšta teorija električnih mašina')}" value="Opšta teorija električnih mašina" />
+                                </h:form>
+                            </td>
+                            <td>
+                                <h:outputText value="3+3" />
+                            </td>
+                            <td>
+                                <h:outputText value="9" />
+                            </td>
+                        </tr>
+                        <tr align="center" style="font-size: 10.5pt">
+                            <td>
+                                <h:form>
+                                    <h:commandLink action="#{predmetControler.ucitajPredmet('Prelazne pojave u električnim mašinama')}" value="Prelazne pojave u električnim mašinama" />
+                                </h:form>
+                            </td>
+                            <td>
+                                <h:outputText value="3+3" />
+                            </td>
+                            <td>
+                                <h:outputText value="9" />
+                            </td>
+                        </tr>
+                        <tr align="center" style="font-size: 10.5pt">
+                            <td>
+                                <h:form>
+                                    <h:commandLink action="#{predmetControler.ucitajPredmet('Ispitivanje i održavanje električnih mašina')}" value="Ispitivanje i održavanje električnih mašina" />
+                                </h:form>
+                            </td>
+                            <td>
+                                <h:outputText value="3+3" />
+                            </td>
+                            <td>
+                                <h:outputText value="9" />
+                            </td>
+                        </tr>
+                        <tr align="center" style="font-size: 10.5pt">
+                            <td>
+                                <h:form>
+                                    <h:commandLink action="#{predmetControler.ucitajPredmet('Nadgledanje stanja električnih mašina u pogonu')}" value="PNadgledanje stanja električnih mašina u pogonu" />
+                                </h:form>
+                            </td>
+                            <td>
+                                <h:outputText value="3+3" />
+                            </td>
+                            <td>
+                                <h:outputText value="9" />
+                            </td>
+                        </tr>
+                        <tr align="center" style="font-size: 10.5pt">
+                            <td>
+                                <h:form>
+                                    <h:commandLink action="#{predmetControler.ucitajPredmet('Električni servomotori')}" value="Električni servomotori" />
+                                </h:form>
+                            </td>
+                            <td>
+                                <h:outputText value="3+3" />
+                            </td>
+                            <td>
+                                <h:outputText value="9" />
+                            </td>
+                        </tr>
+                        <tr align="center" style="font-size: 10.5pt">
+                            <td>
+                                <h:form>
+                                    <h:commandLink action="#{predmetControler.ucitajPredmet('Ispitivanje transformatora i prigušnica u pogonu')}" value="Ispitivanje transformatora i prigušnica u pogonu" />
+                                </h:form>
+                            </td>
+                            <td>
+                                <h:outputText value="3+3" />
+                            </td>
+                            <td>
+                                <h:outputText value="9" />
+                            </td>
+                        </tr>
+                        <tr align="center" style="font-size: 10.5pt">
+                            <td>
+                                <h:form>
+                                    <h:commandLink action="#{predmetControler.ucitajPredmet('Energetski pretvarači')}" value="Energetski pretvarači" />
+                                </h:form>
+                            </td>
+                            <td>
+                                <h:outputText value="3+3" />
+                            </td>
+                            <td>
+                                <h:outputText value="9" />
+                            </td>
+                        </tr>
+                        <tr align="center" style="font-size: 10.5pt">
+                            <td>
+                                <h:form>
+                                    <h:commandLink action="#{predmetControler.ucitajPredmet('Upravljanje energetskim pretvaračima')}" value="Upravljanje energetskim pretvaračima" />
+                                </h:form>
+                            </td>
+                            <td>
+                                <h:outputText value="3+3" />
+                            </td>
+                            <td>
+                                <h:outputText value="9" />
+                            </td>
+                        </tr>
+                        <tr align="center" style="font-size: 10.5pt">
+                            <td>
+                                <h:form>
+                                    <h:commandLink action="#{predmetControler.ucitajPredmet('Odabrana poglavlja iz elektromotornih pogona')}" value="Odabrana poglavlja iz elektromotornih pogona" />
+                                </h:form>
+                            </td>
+                            <td>
+                                <h:outputText value="3+3" />
+                            </td>
+                            <td>
+                                <h:outputText value="9" />
+                            </td>
+                        </tr>
+                        <tr align="center" style="font-size: 10.5pt">
+                            <td>
+                                <h:form>
+                                    <h:commandLink action="#{predmetControler.ucitajPredmet('Višemotorni električni pogoni')}" value="Višemotorni električni pogoni" />
+                                </h:form>
+                            </td>
+                            <td>
+                                <h:outputText value="3+3" />
+                            </td>
+                            <td>
+                                <h:outputText value="9" />
+                            </td>
+                        </tr>
+                        <tr align="center" style="font-size: 10.5pt">
+                            <td>
+                                <h:form>
+                                    <h:commandLink action="#{predmetControler.ucitajPredmet('Integracija elektromotornih pogona u složene sisteme pokretanja i upravljanja')}" value="Integracija elektromotornih pogona u složene sisteme pokretanja i upravljanja" />
+                                </h:form>
+                            </td>
+                            <td>
+                                <h:outputText value="3+3" />
+                            </td>
+                            <td>
+                                <h:outputText value="9" />
+                            </td>
+                        </tr>
+                        <tr align="center" style="font-size: 10.5pt">
+                            <td>
+                                <h:form>
+                                    <h:commandLink action="#{predmetControler.ucitajPredmet('Elektromotorni pogon kao racionalan i kvalitetan potrošač električne energije')}" value="Elektromotorni pogon kao racionalan i kvalitetan potrošač električne energije" />
+                                </h:form>
+                            </td>
+                            <td>
+                                <h:outputText value="3+3" />
+                            </td>
+                            <td>
+                                <h:outputText value="9" />
+                            </td>
+                        </tr>
+                        <tr align="center" style="font-size: 10.5pt">
+                            <td>
+                                <h:form>
+                                    <h:commandLink action="#{predmetControler.ucitajPredmet('Mikroprocesorsko upravljanje energetskim pretvaračima')}" value="Mikroprocesorsko upravljanje energetskim pretvaračima" />
+                                </h:form>
+                            </td>
+                            <td>
+                                <h:outputText value="3+3" />
+                            </td>
+                            <td>
+                                <h:outputText value="9" />
+                            </td>
+                        </tr>
+                        <tr align="center" style="font-size: 10.5pt">
+                            <td>
+                                <h:form>
+                                    <h:commandLink action="#{predmetControler.ucitajPredmet('Mikroprocesorsko upravljanje elektromotornim pogonima')}" value="Mikroprocesorsko upravljanje elektromotornim pogonima" />
+                                </h:form>
+                            </td>
+                            <td>
+                                <h:outputText value="3+3" />
+                            </td>
+                            <td>
+                                <h:outputText value="9" />
+                            </td>
+                        </tr>
+                        <tr align="center" style="font-size: 10.5pt">
+                            <td>
+                                <h:form>
+                                    <h:commandLink action="#{predmetControler.ucitajPredmet('Matematičko modeliranje u elektrotermiji')}" value="Matematičko modeliranje u elektrotermiji" />
+                                </h:form>
+                            </td>
+                            <td>
+                                <h:outputText value="3+3" />
+                            </td>
+                            <td>
+                                <h:outputText value="9" />
+                            </td>
+                        </tr>
+                        <tr align="center" style="font-size: 10.5pt">
+                            <td>
+                                <h:form>
+                                    <h:commandLink action="#{predmetControler.ucitajPredmet('Odabrana poglavlja iz specijalnih električnih instalacija')}" value="Odabrana poglavlja iz specijalnih električnih instalacija" />
+                                </h:form>
+                            </td>
+                            <td>
+                                <h:outputText value="3+3" />
+                            </td>
+                            <td>
+                                <h:outputText value="9" />
+                            </td>
+                        </tr>
+                        <tr align="center" style="font-size: 10.5pt">
+                            <td>
+                                <h:form>
+                                    <h:commandLink action="#{predmetControler.ucitajPredmet('Specijalna poglavlja iz električnog osvetljenja')}" value="Specijalna poglavlja iz električnog osvetljenja" />
+                                </h:form>
+                            </td>
+                            <td>
+                                <h:outputText value="3+3" />
+                            </td>
+                            <td>
+                                <h:outputText value="9" />
+                            </td>
+                        </tr>
+                        <tr align="center" style="font-size: 10.5pt">
+                            <td>
+                                <h:form>
+                                    <h:commandLink action="#{predmetControler.ucitajPredmet('Pozitivni efekti upotrebe bentonita u sistemima uzemljenja')}" value="Pozitivni efekti upotrebe bentonita u sistemima uzemljenja" />
+                                </h:form>
+                            </td>
+                            <td>
+                                <h:outputText value="3+3" />
+                            </td>
+                            <td>
+                                <h:outputText value="9" />
+                            </td>
+                        </tr>
+                    </table>
+                </div>
+
+
+
+
+
+                <br class="clearfix" />
+            </ui:define>
+            <ui:define name="sredina_sidebar">
+            </ui:define>
+
+            <ui:define name="dole">
+                <h3>Magnis hendrerit erat</h3>
+                <p>
+                    Euismod sodales sociis hendrerit pulvinar acursus urna. Consectetur egestas sodales at ornare laoreet turpis. Lorem id sapien ridiculus sagittis imperdiet urna suspendisse. Posuere arcu parturient quam risus. Aliquam nullam magnis integer gravida vulputate felis. Consectetur montes sollicitudin dictum. Auctor sociis hendrerit pulvinar acursus urna lorem ipsum dolor vivamus pulvinar libero. Massa egestas cubilia lacus augue mattis consectetur.
+                </p>
+            </ui:define>
+
+        </ui:composition>
+    </h:body>
+</html>
+

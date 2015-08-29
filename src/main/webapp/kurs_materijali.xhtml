@@ -10,12 +10,22 @@
         <meta name="description" content="" />
         <meta name="keywords" content="" />
         <meta http-equiv="content-type" content="text/html; charset=utf-8" />
+        <script type="text/javascript">
+            function start() {
+                PF('statusDialog').show();
+            }
+
+            function stop() {
+                PF('statusDialog').hide();
+            }
+        </script>
     </h:head>
     <h:body>
         <ui:composition template="template.xhtml">
             <ui:define name="pagetitle">Kurs index</ui:define>
             <ui:define name="breadcrumps"><a href="#">Početna</a>&nbsp;>&nbsp;<a href="#">Obaveštenja o predmetu</a></ui:define>
             <ui:define name="sredina_sadrzaj">
+                #{predmetControler.ucitajMaterijale()}
                 <div style="float: left; margin-left: 90px">
                     <table width="200" border="1">
                         <tr>
@@ -42,11 +52,16 @@
                         <ui:repeat value="#{predmetControler.materijaliVezbe}" var="vezbe">
                             <tr>
                                 <td>
-                                    #{vezbe.podatak}
+                                    <h:form>
+                                        <p:commandButton value="Download" ajax="false" onclick="PrimeFaces.monitorDownload(start, stop);" icon="ui-icon-arrowthick-1-s">
+                                            <p:fileDownload value="#{predmetControler.file}" />
+                                        </p:commandButton>
+                                    </h:form>
                                 </td>
                             </tr>
                         </ui:repeat>
                     </table>
+                    <a href="proba.xhtml">proba</a>
                 </div>
 
             </ui:define>

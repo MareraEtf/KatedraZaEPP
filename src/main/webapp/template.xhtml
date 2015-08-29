@@ -56,8 +56,8 @@
                                         <li><a href="#">#{msgs.meni412}</a></li>
                                     </ul>
                                 </li>
-                                <li><a href="#">#{msgs.meni42}</a></li>
-                                <li><a href="#">#{msgs.meni43}</a></li>
+                                <li><h:form><h:commandLink action="#{login.redirect('predmetiMasterStudijeEPP')}" value="#{msgs.meni42}" /></h:form></li>
+                                <li><h:form><h:commandLink action="#{login.redirect('predmetiDoktorskeStudijeEPP')}" value="#{msgs.meni43}" /></h:form></li>
 
                             </ul>
                         </li>
@@ -167,7 +167,7 @@
                         <ui:insert name="sredina_sidebar">
                             <div class="box" >
                                 <h:panelGroup rendered="#{(login.korisnik.tip eq 1) or (login.korisnik.tip eq 3) or (login.korisnik.tip eq 4)}">
-                                    <a href="dodavanjeObavestenja.xhtml">Dodaj obaveštenje</a>
+                                    <a href="dodavanjeObavestenja.xhtml" >Dodaj obaveštenje</a>
                                 </h:panelGroup>
                                 <br/>
                                 <h:panelGroup rendered="#{login.korisnik.tip eq 1}">

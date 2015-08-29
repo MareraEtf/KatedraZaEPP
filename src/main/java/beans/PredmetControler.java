@@ -5,22 +5,32 @@
  */
 package beans;
 
+import db.Korisnik;
 import db.Kurs;
 import db.Kurs_stavke;
 import db.Materijal;
 import db.Obavestenje;
 import db.Obavestenje_kurs;
+import db.Predavac_kurs;
 import db.dbFactory;
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.InputStream;
 import javax.enterprise.context.SessionScoped;
 import java.io.Serializable;
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.List;
-import javafx.scene.paint.Material;
+import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
+import javax.faces.context.ExternalContext;
 import javax.faces.context.FacesContext;
 import javax.faces.event.ValueChangeEvent;
+import javax.servlet.ServletContext;
 import org.hibernate.Query;
 import org.hibernate.Session;
+import org.primefaces.model.DefaultStreamedContent;
+import org.primefaces.model.StreamedContent;
 
 /**
  *
@@ -43,13 +53,43 @@ public class PredmetControler implements Serializable {
     private String tipObavestenja;
     private List<Kurs_stavke> stavkeMenija = new ArrayList<Kurs_stavke>();
     private String poruka;
+    private boolean flagPredaje = false;
+    private Obavestenje obavestenjeNovo = new Obavestenje();
 
     //materijali
     private List<Materijal> materijali = new ArrayList<Materijal>();
     private List<Materijal> materijaliPredavanja = new ArrayList<Materijal>();
     private List<Materijal> materijaliVezbe = new ArrayList<Materijal>();
 
+    private StreamedContent file;
+
     public PredmetControler() {
+        InputStream stream = ((ServletContext) FacesContext.getCurrentInstance().getExternalContext().getContext()).getResourceAsStream("/upload/materijali/2.jpg");
+        file = new DefaultStreamedContent(stream, "image/jpg", "downloaded_2.jpg");
+    }
+
+    public Obavestenje getObavestenjeNovo() {
+        return obavestenjeNovo;
+    }
+
+    public void setObavestenjeNovo(Obavestenje obavestenjeNovo) {
+        this.obavestenjeNovo = obavestenjeNovo;
+    }
+
+    public boolean isFlagPredaje() {
+        return flagPredaje;
+    }
+
+    public void setFlagPredaje(boolean flagPredaje) {
+        this.flagPredaje = flagPredaje;
+    }
+
+    public StreamedContent getFile() {
+        return file;
+    }
+
+    public void setFile(StreamedContent file) {
+        this.file = file;
     }
 
     public List<Materijal> getMaterijaliPredavanja() {
@@ -164,9 +204,11 @@ public class PredmetControler implements Serializable {
         session.close();
         if (result.size() > 0) {
             kurs = result.get(0);
+            FacesContext.getCurrentInstance().getExternalContext().getSessionMap().put("kurs", kurs);
+
         } else {
             poruka = "Stranica predmeta je u izradi";
-            return "informacije.xhtml";
+            return "informacijeKurs.xhtml";
         }
 
         session = dbFactory.getFactory().openSession();
@@ -218,6 +260,22 @@ public class PredmetControler implements Serializable {
         q.setParameter("id", kurs.getIDKurs());
         stavkeMenija = q.list();
         session.close();
+
+        Korisnik kor = (Korisnik) FacesContext.getCurrentInstance().getExternalContext().getSessionMap().get("korisnik");
+        session = dbFactory.getFactory().openSession();
+        q = session.createQuery("FROM Predavac_kurs WHERE predavac=:p");
+        q.setParameter("p", kor.getIDKor());
+        List<Predavac_kurs> pk = q.list();
+        session.close();
+
+        if (pk.size() > 0) {
+            for (int i = 0; i < pk.size(); i++) {
+                if (pk.get(i).getKurs() == kurs.getIDKurs()) {
+                    flagPredaje = true;
+                    break;
+                }
+            }
+        }
 
         return "kurs_index.xhtml";
     }
@@ -322,6 +380,96 @@ public class PredmetControler implements Serializable {
         }
 
         return "kurs_materijali.xhtml";
+    }
+
+    public void ucitajMaterijale() {
+        Kurs k = (Kurs) FacesContext.getCurrentInstance().getExternalContext().getSessionMap().get("kurs");
+        session = dbFactory.getFactory().openSession();
+        Query q = session.createQuery("FROM Materijal WHERE kurs=:id");
+        q.setParameter("id", k.getIDKurs());
+        materijali = q.list();
+        session.close();
+
+        for (int i = 0; i < materijali.size(); i++) {
+            if (materijali.get(i).getTip().equals("predavanja")) {
+                materijaliPredavanja.add(materijali.get(i));
+            } else {
+                materijaliVezbe.add(materijali.get(i));
+            }
+        }
+    }
+
+//    public StreamedContent prepDownload() throws Exception {
+//
+//        StreamedContent download = new DefaultStreamedContent();
+//        InputStream stream = ((ServletContext) FacesContext.getCurrentInstance().getExternalContext().getContext()).getResourceAsStream("/upload/materijali/2.jpg");
+//        file = new DefaultStreamedContent(stream, "image/jpg", "downloaded_2.jpg");
+////        File file = new File("C:\\file.csv");
+////        InputStream input = new FileInputStream(file);
+//        ExternalContext externalContext = FacesContext.getCurrentInstance().getExternalContext();
+//        download = new DefaultStreamedContent(stream, externalContext.getMimeType(file.getName()), file.getName());
+//        System.out.println("PREP = " + download.getName());
+//        return download;
+//    }
+    public void dodajObavestenje() {
+
+        Korisnik kor = (Korisnik) FacesContext.getCurrentInstance().getExternalContext().getSessionMap().get("korisnik");
+        Kurs kursTekuci = (Kurs) FacesContext.getCurrentInstance().getExternalContext().getSessionMap().get("kurs");
+        session = dbFactory.getFactory().openSession();
+
+        Query q = session.createQuery("SELECT naziv FROM Obavestenje WHERE naziv=:naz");
+        q.setParameter("naz", obavestenjeNovo.getNaziv());
+        List results = q.list();
+
+        long vreme = System.currentTimeMillis();
+
+        Calendar datum = Calendar.getInstance();
+        datum.setTimeInMillis(vreme);
+
+        if (results.size() > 0) {
+            FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_ERROR, "Obaveštenje sa istim nazivom veÄ‡ postoji", ""));
+            session.close();
+            return;
+        } else {
+            session.beginTransaction();
+            obavestenjeNovo.setDatum(datum);
+            session.save(obavestenjeNovo);
+            session.getTransaction().commit();
+            session.close();
+
+            session = dbFactory.getFactory().openSession();
+            q = session.createQuery("FROM Obavestenje");
+            List<Obavestenje> temp = q.list();
+            session.close();
+            int idObavestenje;
+            if (temp.size() > 0) {
+                idObavestenje = temp.get(temp.size() - 1).getIDObavestenja();
+                Obavestenje_kurs ok = new Obavestenje_kurs();
+
+//                session = dbFactory.getFactory().openSession();
+//                q = session.createQuery("FROM Kurs WHERE nazivKursa=:naz");
+//                q.setParameter("naz", kurs.getNazivKursa());
+//                List<Kurs> tempKurs = q.list();
+//                Kurs k = new Kurs();
+//                if (tempKurs.size() > 0) {
+//                    k = tempKurs.get(0);
+//                }
+//                session.close();
+                ok.setKurs(kursTekuci.getIDKurs());
+                ok.setObavestenje(idObavestenje);
+                session = dbFactory.getFactory().openSession();
+                session.beginTransaction();
+                session.save(ok);
+                session.getTransaction().commit();
+                session.close();
+            }
+            FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO, "Obaveštenje je uspešno dodato, možete ga videti na stranici predmeta", ""));
+
+        }
+    }
+
+    public void ucitajNazivPredmeta() {
+        kurs = (Kurs) FacesContext.getCurrentInstance().getExternalContext().getSessionMap().get("kurs");
     }
 
 }

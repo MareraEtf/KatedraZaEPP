@@ -44,11 +44,20 @@ public class NastavniciControler implements Serializable {
     private List<Predavac_kurs> kursevi_drzi = new ArrayList<Predavac_kurs>();
     private List<Kurs> kursevi = new ArrayList<Kurs>();
     private List<Kurs> kurseviSvi = new ArrayList<Kurs>();
+    private String poruka;
 
     /**
      * Creates a new instance of NastavniciControler
      */
     public NastavniciControler() {
+    }
+
+    public String getPoruka() {
+        return poruka;
+    }
+
+    public void setPoruka(String poruka) {
+        this.poruka = poruka;
     }
 
     public Session getSession() {
@@ -127,12 +136,13 @@ public class NastavniciControler implements Serializable {
 
             List<Korisnik> temp = new ArrayList<Korisnik>();
             temp = q.list();
-
+            session.close();
             if (temp.size() > 0) {
                 nastavnik = temp.get(0);
+            } else {
+                poruka = "Ne postoji stranica za trazenog profesora";
+                return "informacijeProfesor.xhtml";
             }
-
-            session.close();
         }
         return "nastavnikDetalji.xhtml";
     }

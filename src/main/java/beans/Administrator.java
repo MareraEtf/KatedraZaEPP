@@ -10,6 +10,7 @@ import db.Kurs;
 import db.Kurs_stavke;
 import db.Materijal;
 import db.Obavestenje;
+import db.Obavestenje_kurs;
 import db.Predavac_kurs;
 import db.dbFactory;
 import java.io.File;
@@ -47,6 +48,9 @@ public class Administrator implements Serializable {
     //obavestenje
     private String nazivObavestenja, tekstObavestenja;
     private Obavestenje obavestenje = new Obavestenje();
+    private String kursObavestenje;
+    private List<Kurs> mojiPredmetiNiz = new ArrayList<Kurs>();
+    private List<String> mojiPredmetiNazivi = new ArrayList<String>();
 
     //kurs
     private String nazivKursa, sifra, studije, tip;
@@ -64,6 +68,30 @@ public class Administrator implements Serializable {
     private boolean flag = false;
 
     public Administrator() {
+    }
+
+    public List<String> getMojiPredmetiNazivi() {
+        return mojiPredmetiNazivi;
+    }
+
+    public void setMojiPredmetiNazivi(List<String> mojiPredmetiNazivi) {
+        this.mojiPredmetiNazivi = mojiPredmetiNazivi;
+    }
+
+    public List<Kurs> getMojiPredmetiNiz() {
+        return mojiPredmetiNiz;
+    }
+
+    public void setMojiPredmetiNiz(List<Kurs> mojiPredmetiNiz) {
+        this.mojiPredmetiNiz = mojiPredmetiNiz;
+    }
+
+    public String getKursObavestenje() {
+        return kursObavestenje;
+    }
+
+    public void setKursObavestenje(String kursObavestenje) {
+        this.kursObavestenje = kursObavestenje;
     }
 
     public boolean isFlag() {
@@ -194,8 +222,9 @@ public class Administrator implements Serializable {
         this.tekstObavestenja = tekstObavestenja;
     }
 
-    public String dodajObavestenje() {
+    public void dodajObavestenje() {
 
+        Korisnik kor = (Korisnik) FacesContext.getCurrentInstance().getExternalContext().getSessionMap().get("korisnik");
         session = dbFactory.getFactory().openSession();
 
         Query q = session.createQuery("SELECT naziv FROM Obavestenje WHERE naziv=:naz");
@@ -208,16 +237,48 @@ public class Administrator implements Serializable {
         datum.setTimeInMillis(vreme);
 
         if (results.size() > 0) {
-            FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_ERROR, "ObaveÅ¡tenje sa istim nazivom veÄ‡ postoji", ""));
+            FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_ERROR, "Obaveštenje sa istim nazivom veÄ‡ postoji", ""));
             session.close();
-            return null;
+            return;
         } else {
             session.beginTransaction();
             obavestenje.setDatum(datum);
             session.save(obavestenje);
             session.getTransaction().commit();
             session.close();
-            return "obavestenja.xtml";
+            if (!kursObavestenje.equals("katedra")) {
+                session = dbFactory.getFactory().openSession();
+                q = session.createQuery("FROM Obavestenje");
+                List<Obavestenje> temp = q.list();
+                session.close();
+                int idObavestenje;
+                if (temp.size() > 0) {
+                    idObavestenje = temp.get(temp.size() - 1).getIDObavestenja();
+                    Obavestenje_kurs ok = new Obavestenje_kurs();
+
+                    session = dbFactory.getFactory().openSession();
+                    q = session.createQuery("FROM Kurs WHERE nazivKursa=:naz");
+                    q.setParameter("naz", kursObavestenje);
+                    List<Kurs> tempKurs = q.list();
+                    Kurs k = new Kurs();
+                    if (tempKurs.size() > 0) {
+                        k = tempKurs.get(0);
+                    }
+                    session.close();
+
+                    ok.setKurs(k.getIDKurs());
+                    ok.setObavestenje(idObavestenje);
+                    session = dbFactory.getFactory().openSession();
+                    session.beginTransaction();
+                    session.save(ok);
+                    session.getTransaction().commit();
+                    session.close();
+                }
+                FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO, "Obaveštenje je uspešno dodato, možete ga videti na stranici predmeta", ""));
+            } else {
+                FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO, "Obaveštenje je uspešno dodato, možete ga pogledati u sekciji obaveštenja", ""));
+            }
+
         }
     }
 
@@ -427,6 +488,38 @@ public class Administrator implements Serializable {
 
         stavke = new DualListModel<>(sourceStavke, targetStavke);
 
+    }
+
+    public void mojiPredmeti() {
+
+        Korisnik kor = (Korisnik) FacesContext.getCurrentInstance().getExternalContext().getSessionMap().get("korisnik");
+
+        session = dbFactory.getFactory().openSession();
+        Query q = session.createQuery("FROM Predavac_kurs WHERE predavac=:id");
+        q.setParameter("id", kor.getIDKor());
+        List<Predavac_kurs> temp_drzi = q.list();
+        session.close();
+        if (temp_drzi.size() > 0) {
+
+            session = dbFactory.getFactory().openSession();
+            q = session.createQuery("FROM Kurs");
+            List<Kurs> kurseviSvi = q.list();
+            session.close();
+
+            mojiPredmetiNiz.clear();
+            for (int i = 0; i < temp_drzi.size(); i++) {
+                for (int j = 0; j < kurseviSvi.size(); j++) {
+                    if (temp_drzi.get(i).getKurs() == kurseviSvi.get(j).getIDKurs()) {
+                        mojiPredmetiNiz.add(kurseviSvi.get(j));
+                    }
+                }
+            }
+            mojiPredmetiNazivi.clear();
+            for (int i = 0; i < mojiPredmetiNiz.size(); i++) {
+                mojiPredmetiNazivi.add(mojiPredmetiNiz.get(i).getNazivKursa());
+            }
+        }
+//        return "dodavanjeObavestenja.xhtml";
     }
 
 }

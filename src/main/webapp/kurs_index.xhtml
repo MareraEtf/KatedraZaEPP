@@ -10,6 +10,15 @@
         <meta name="description" content="" />
         <meta name="keywords" content="" />
         <meta http-equiv="content-type" content="text/html; charset=utf-8" />
+        <script type="text/javascript">
+            function start() {
+                PF('statusDialog').show();
+            }
+
+            function stop() {
+                PF('statusDialog').hide();
+            }
+        </script>
     </h:head>
     <h:body>
         <ui:composition template="template.xhtml">
@@ -28,6 +37,7 @@
                         <f:selectItem itemLabel="Posao" itemValue="posao" />
                         <f:selectItem itemLabel="Praksa" itemValue="praksa" />
                         <f:selectItem itemLabel="Takmičenje" itemValue="takmicenje" />
+                        <f:selectItem itemLabel="Opšte" itemValue="opste" />
                     </h:selectOneMenu>
                     <br /><br />
                     <p:separator />
@@ -55,7 +65,6 @@
                 <p:separator/>
                 <br/>
                 <div class="box">
-
                     <h:form>
                         <ui:repeat value="#{predmetControler.stavkeMenija}" var="stavka">
                             <h4><h:commandLink action="#{predmetControler.akcija()}" value="#{stavka.stavka}" /></h4>
@@ -65,7 +74,15 @@
                         <h4><h:commandLink action="#{predmetControler.materijali()}" value="materijali" /></h4>
                     </h:form>
                 </div>
-
+                <h3>OPCIJE</h3>
+                <p:separator/>
+                <div class="box">
+                    <h:panelGroup rendered="#{predmetControler.flagPredaje}">
+                        <h:form>
+                            <a href="dodavanjeObavestenjaKurs.xhtml" >Dodaj obaveštenje</a>
+                        </h:form>
+                    </h:panelGroup>
+                </div>
             </ui:define>
 
             <ui:define name="dole">
